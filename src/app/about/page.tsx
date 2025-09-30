@@ -1,12 +1,20 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
-import { FiAward, FiUsers, FiTarget, FiHeart, FiTrendingUp, FiGlobe } from 'react-icons/fi';
+import {
+  FiAward,
+  FiUsers,
+  FiTarget,
+  FiHeart,
+  FiTrendingUp,
+  FiGlobe,
+} from 'react-icons/fi';
 import Container from '@/components/ui/Container';
 import Button from '@/components/ui/Button';
 
 export const metadata: Metadata = {
   title: 'About ZMS IT Hub | Leading Software Development Company',
-  description: 'Learn about ZMS IT Hub\'s mission, vision, and values. Meet our expert team of developers, designers, and strategists dedicated to delivering exceptional software solutions.',
+  description:
+    "Learn about ZMS IT Hub's mission, vision, and values. Meet our expert team of developers, designers, and strategists dedicated to delivering exceptional software solutions.",
   keywords: [
     'about ZMS IT Hub',
     'software development company Pakistan',
@@ -52,22 +60,26 @@ export default function AboutPage() {
     {
       icon: FiTarget,
       title: 'Excellence',
-      description: 'We strive for excellence in every project, delivering solutions that exceed expectations.',
+      description:
+        'We strive for excellence in every project, delivering solutions that exceed expectations.',
     },
     {
       icon: FiUsers,
       title: 'Collaboration',
-      description: 'We believe in the power of teamwork and collaboration to achieve outstanding results.',
+      description:
+        'We believe in the power of teamwork and collaboration to achieve outstanding results.',
     },
     {
       icon: FiHeart,
       title: 'Integrity',
-      description: 'We maintain the highest standards of integrity and transparency in all our dealings.',
+      description:
+        'We maintain the highest standards of integrity and transparency in all our dealings.',
     },
     {
       icon: FiTrendingUp,
       title: 'Innovation',
-      description: 'We embrace innovation and stay ahead of technology trends to deliver cutting-edge solutions.',
+      description:
+        'We embrace innovation and stay ahead of technology trends to deliver cutting-edge solutions.',
     },
   ];
 
@@ -81,15 +93,16 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary to-primary-dark text-white section-padding">
+      <section className="section-padding bg-gradient-to-br from-primary to-primary-dark text-white">
         <Container>
-          <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-4xl lg:text-6xl font-bold mb-6">
+          <div className="mx-auto max-w-4xl text-center">
+            <h1 className="mb-6 text-4xl font-bold lg:text-6xl">
               About ZMS IT Hub
             </h1>
-            <p className="text-xl text-gray-200 leading-relaxed">
-              We are a passionate team of developers, designers, and strategists dedicated to 
-              transforming businesses through innovative software solutions.
+            <p className="text-xl leading-relaxed text-gray-200">
+              We are a passionate team of developers, designers, and strategists
+              dedicated to transforming businesses through innovative software
+              solutions.
             </p>
           </div>
         </Container>
@@ -98,28 +111,31 @@ export default function AboutPage() {
       {/* Company Story Section */}
       <section className="section-padding">
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
             <div>
-              <h2 className="text-3xl lg:text-4xl font-bold text-secondary mb-6">
+              <h2 className="mb-6 text-3xl font-bold text-secondary lg:text-4xl">
                 Our Story
               </h2>
-              <div className="space-y-4 text-gray-700 leading-relaxed">
+              <div className="space-y-4 leading-relaxed text-gray-700">
                 <p>
-                  Founded in 2019, ZMS IT Hub began as a small team of passionate developers 
-                  with a vision to bridge the gap between innovative ideas and practical software 
-                  solutions. What started as a local software development company has grown into 
+                  Founded in 2019, ZMS IT Hub began as a small team of
+                  passionate developers with a vision to bridge the gap between
+                  innovative ideas and practical software solutions. What
+                  started as a local software development company has grown into
                   a trusted partner for businesses worldwide.
                 </p>
                 <p>
-                  Our journey has been marked by continuous learning, adaptation, and growth. 
-                  We've successfully delivered over 50 projects across various industries, 
-                  from startups to established enterprises, helping them achieve their digital 
+                  Our journey has been marked by continuous learning,
+                  adaptation, and growth. We've successfully delivered over 50
+                  projects across various industries, from startups to
+                  established enterprises, helping them achieve their digital
                   transformation goals.
                 </p>
                 <p>
-                  Today, we're proud to be recognized as one of Pakistan's leading software 
-                  development companies, known for our technical expertise, commitment to quality, 
-                  and client-centric approach.
+                  Today, we're proud to be recognized as one of Pakistan's
+                  leading software development companies, known for our
+                  technical expertise, commitment to quality, and client-centric
+                  approach.
                 </p>
               </div>
             </div>
@@ -139,35 +155,43 @@ export default function AboutPage() {
       {/* Mission, Vision, Values Section */}
       <section className="section-padding bg-gray-50">
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
             <div className="text-center">
-              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary">
                 <FiTarget className="text-white" size={32} />
               </div>
-              <h3 className="text-2xl font-bold text-secondary mb-4">Our Mission</h3>
-              <p className="text-gray-700 leading-relaxed">
-                To empower businesses with innovative software solutions that drive growth, 
-                efficiency, and success in the digital age.
+              <h3 className="mb-4 text-2xl font-bold text-secondary">
+                Our Mission
+              </h3>
+              <p className="leading-relaxed text-gray-700">
+                To empower businesses with innovative software solutions that
+                drive growth, efficiency, and success in the digital age.
               </p>
             </div>
             <div className="text-center">
-              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary">
                 <FiGlobe className="text-white" size={32} />
               </div>
-              <h3 className="text-2xl font-bold text-secondary mb-4">Our Vision</h3>
-              <p className="text-gray-700 leading-relaxed">
-                To be the leading software development company globally, recognized for 
-                excellence, innovation, and transformative digital solutions.
+              <h3 className="mb-4 text-2xl font-bold text-secondary">
+                Our Vision
+              </h3>
+              <p className="leading-relaxed text-gray-700">
+                To be the leading software development company globally,
+                recognized for excellence, innovation, and transformative
+                digital solutions.
               </p>
             </div>
             <div className="text-center">
-              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary">
                 <FiHeart className="text-white" size={32} />
               </div>
-              <h3 className="text-2xl font-bold text-secondary mb-4">Our Values</h3>
-              <p className="text-gray-700 leading-relaxed">
-                Integrity, excellence, collaboration, and innovation guide everything we do, 
-                ensuring we deliver value to our clients and community.
+              <h3 className="mb-4 text-2xl font-bold text-secondary">
+                Our Values
+              </h3>
+              <p className="leading-relaxed text-gray-700">
+                Integrity, excellence, collaboration, and innovation guide
+                everything we do, ensuring we deliver value to our clients and
+                community.
               </p>
             </div>
           </div>
@@ -177,23 +201,23 @@ export default function AboutPage() {
       {/* Stats Section */}
       <section className="section-padding">
         <Container>
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-secondary mb-4">
+          <div className="mb-16 text-center">
+            <h2 className="mb-4 text-3xl font-bold text-secondary lg:text-4xl">
               Our Impact in Numbers
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Our success is measured by the impact we create for our clients and the 
-              growth we achieve together.
+            <p className="mx-auto max-w-3xl text-xl text-gray-600">
+              Our success is measured by the impact we create for our clients
+              and the growth we achieve together.
             </p>
           </div>
-          
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+
+          <div className="grid grid-cols-2 gap-8 lg:grid-cols-4">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="text-4xl lg:text-5xl font-bold text-primary mb-2">
+                <div className="mb-2 text-4xl font-bold text-primary lg:text-5xl">
                   {stat.number}
                 </div>
-                <div className="text-gray-600 font-medium">{stat.label}</div>
+                <div className="font-medium text-gray-600">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -203,24 +227,28 @@ export default function AboutPage() {
       {/* Values Section */}
       <section className="section-padding bg-gray-50">
         <Container>
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-secondary mb-4">
+          <div className="mb-16 text-center">
+            <h2 className="mb-4 text-3xl font-bold text-secondary lg:text-4xl">
               Our Core Values
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              These values guide our decisions, shape our culture, and define how we 
-              work with our clients and each other.
+            <p className="mx-auto max-w-3xl text-xl text-gray-600">
+              These values guide our decisions, shape our culture, and define
+              how we work with our clients and each other.
             </p>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
             {values.map((value, index) => (
               <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
                   <value.icon className="text-primary" size={32} />
                 </div>
-                <h3 className="text-xl font-semibold text-secondary mb-4">{value.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{value.description}</p>
+                <h3 className="mb-4 text-xl font-semibold text-secondary">
+                  {value.title}
+                </h3>
+                <p className="leading-relaxed text-gray-600">
+                  {value.description}
+                </p>
               </div>
             ))}
           </div>
@@ -230,36 +258,43 @@ export default function AboutPage() {
       {/* Team Section */}
       <section className="section-padding">
         <Container>
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-secondary mb-4">
+          <div className="mb-16 text-center">
+            <h2 className="mb-4 text-3xl font-bold text-secondary lg:text-4xl">
               Meet Our Team
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Our diverse team of experts brings together technical excellence, 
-              creative vision, and business acumen to deliver exceptional results.
+            <p className="mx-auto max-w-3xl text-xl text-gray-600">
+              Our diverse team of experts brings together technical excellence,
+              creative vision, and business acumen to deliver exceptional
+              results.
             </p>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
             {teamMembers.map((member, index) => (
-              <div key={index} className="text-center group">
+              <div key={index} className="group text-center">
                 <div className="relative mb-6">
                   <Image
                     src={member.avatar}
                     alt={member.name}
                     width={200}
                     height={200}
-                    className="w-48 h-48 rounded-full mx-auto object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="mx-auto h-48 w-48 rounded-full object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                 </div>
-                <h3 className="text-xl font-semibold text-secondary mb-2">{member.name}</h3>
-                <p className="text-primary font-medium mb-3">{member.position}</p>
-                <p className="text-gray-600 mb-4 text-sm leading-relaxed">{member.bio}</p>
+                <h3 className="mb-2 text-xl font-semibold text-secondary">
+                  {member.name}
+                </h3>
+                <p className="mb-3 font-medium text-primary">
+                  {member.position}
+                </p>
+                <p className="mb-4 text-sm leading-relaxed text-gray-600">
+                  {member.bio}
+                </p>
                 <div className="flex flex-wrap justify-center gap-2">
                   {member.skills.map((skill, skillIndex) => (
                     <span
                       key={skillIndex}
-                      className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-medium"
+                      className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700"
                     >
                       {skill}
                     </span>
@@ -274,17 +309,17 @@ export default function AboutPage() {
       {/* Awards Section */}
       <section className="section-padding bg-gray-50">
         <Container>
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-secondary mb-4">
+          <div className="mb-16 text-center">
+            <h2 className="mb-4 text-3xl font-bold text-secondary lg:text-4xl">
               Recognition & Awards
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Our commitment to excellence has been recognized by industry leaders 
-              and our clients.
+            <p className="mx-auto max-w-3xl text-xl text-gray-600">
+              Our commitment to excellence has been recognized by industry
+              leaders and our clients.
             </p>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {[
               {
                 title: 'Best Software Development Company 2023',
@@ -303,12 +338,14 @@ export default function AboutPage() {
               },
             ].map((award, index) => (
               <div key={index} className="card text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
                   <FiAward className="text-primary" size={32} />
                 </div>
-                <h3 className="text-lg font-semibold text-secondary mb-2">{award.title}</h3>
-                <p className="text-gray-600 mb-2">{award.organization}</p>
-                <p className="text-primary font-medium">{award.year}</p>
+                <h3 className="mb-2 text-lg font-semibold text-secondary">
+                  {award.title}
+                </h3>
+                <p className="mb-2 text-gray-600">{award.organization}</p>
+                <p className="font-medium text-primary">{award.year}</p>
               </div>
             ))}
           </div>
@@ -319,14 +356,14 @@ export default function AboutPage() {
       <section className="section-padding bg-primary text-white">
         <Container>
           <div className="text-center">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4">
+            <h2 className="mb-4 text-3xl font-bold lg:text-4xl">
               Ready to Work with Us?
             </h2>
-            <p className="text-xl text-gray-200 mb-8 max-w-3xl mx-auto">
-              Let's discuss your project and see how our team can help bring your 
-              vision to life with innovative software solutions.
+            <p className="mx-auto mb-8 max-w-3xl text-xl text-gray-200">
+              Let's discuss your project and see how our team can help bring
+              your vision to life with innovative software solutions.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col justify-center gap-4 sm:flex-row">
               <Button variant="secondary" size="lg" href="/contact">
                 Start Your Project
               </Button>
@@ -340,4 +377,3 @@ export default function AboutPage() {
     </>
   );
 }
-

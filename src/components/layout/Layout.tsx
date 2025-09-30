@@ -34,7 +34,7 @@ export default function Layout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="canonical" href={pageUrl} />
-        
+
         {noindex && <meta name="robots" content="noindex,nofollow" />}
 
         {/* Open Graph */}
@@ -55,15 +55,19 @@ export default function Layout({
         {/* Additional Meta Tags */}
         <meta name="author" content={siteConfig.name} />
         <meta name="theme-color" content="#751A1A" />
-        
+
         {/* Preconnect to external domains */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
         <link rel="preconnect" href="https://www.google-analytics.com" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
       </Head>
 
-      <div className="min-h-screen flex flex-col">
+      <div className="flex min-h-screen flex-col">
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
@@ -71,4 +75,3 @@ export default function Layout({
     </>
   );
 }
-

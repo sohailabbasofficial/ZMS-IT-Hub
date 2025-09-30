@@ -2,7 +2,14 @@
 
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { FiMail, FiPhone, FiMapPin, FiClock, FiSend, FiCheckCircle } from 'react-icons/fi';
+import {
+  FiMail,
+  FiPhone,
+  FiMapPin,
+  FiClock,
+  FiSend,
+  FiCheckCircle,
+} from 'react-icons/fi';
 import Container from '@/components/ui/Container';
 import Button from '@/components/ui/Button';
 import { siteConfig } from '@/lib/config';
@@ -11,7 +18,7 @@ import type { ContactFormData } from '@/types';
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  
+
   const {
     register,
     handleSubmit,
@@ -21,7 +28,7 @@ export default function ContactPage() {
 
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
-    
+
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
@@ -47,17 +54,24 @@ export default function ContactPage() {
 
   if (isSubmitted) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="flex min-h-screen items-center justify-center bg-gray-50">
         <Container>
-          <div className="text-center max-w-2xl mx-auto">
-            <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+          <div className="mx-auto max-w-2xl text-center">
+            <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-green-100">
               <FiCheckCircle className="text-green-600" size={40} />
             </div>
-            <h1 className="text-3xl font-bold text-secondary mb-4">Message Sent Successfully!</h1>
-            <p className="text-xl text-gray-600 mb-8">
-              Thank you for reaching out to us. We'll get back to you within 24 hours.
+            <h1 className="mb-4 text-3xl font-bold text-secondary">
+              Message Sent Successfully!
+            </h1>
+            <p className="mb-8 text-xl text-gray-600">
+              Thank you for reaching out to us. We'll get back to you within 24
+              hours.
             </p>
-            <Button variant="primary" size="lg" onClick={() => setIsSubmitted(false)}>
+            <Button
+              variant="primary"
+              size="lg"
+              onClick={() => setIsSubmitted(false)}
+            >
               Send Another Message
             </Button>
           </div>
@@ -69,15 +83,15 @@ export default function ContactPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary to-primary-dark text-white section-padding">
+      <section className="section-padding bg-gradient-to-br from-primary to-primary-dark text-white">
         <Container>
-          <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-4xl lg:text-6xl font-bold mb-6">
+          <div className="mx-auto max-w-4xl text-center">
+            <h1 className="mb-6 text-4xl font-bold lg:text-6xl">
               Get In Touch
             </h1>
-            <p className="text-xl text-gray-200 leading-relaxed">
-              Ready to start your next project? We'd love to hear from you. 
-              Send us a message and we'll respond within 24 hours.
+            <p className="text-xl leading-relaxed text-gray-200">
+              Ready to start your next project? We'd love to hear from you. Send
+              us a message and we'll respond within 24 hours.
             </p>
           </div>
         </Container>
@@ -86,14 +100,19 @@ export default function ContactPage() {
       {/* Contact Form & Info Section */}
       <section className="section-padding">
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
             {/* Contact Form */}
             <div>
-              <h2 className="text-3xl font-bold text-secondary mb-6">Send Us a Message</h2>
+              <h2 className="mb-6 text-3xl font-bold text-secondary">
+                Send Us a Message
+              </h2>
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label
+                      htmlFor="name"
+                      className="mb-2 block text-sm font-medium text-gray-700"
+                    >
                       Full Name *
                     </label>
                     <input
@@ -104,35 +123,45 @@ export default function ContactPage() {
                       placeholder="Your full name"
                     />
                     {errors.name && (
-                      <p className="text-red-600 text-sm mt-1">{errors.name.message}</p>
+                      <p className="mt-1 text-sm text-red-600">
+                        {errors.name.message}
+                      </p>
                     )}
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label
+                      htmlFor="email"
+                      className="mb-2 block text-sm font-medium text-gray-700"
+                    >
                       Email Address *
                     </label>
                     <input
                       type="email"
                       id="email"
-                      {...register('email', { 
+                      {...register('email', {
                         required: 'Email is required',
                         pattern: {
                           value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                          message: 'Invalid email address'
-                        }
+                          message: 'Invalid email address',
+                        },
                       })}
                       className="input"
                       placeholder="your.email@example.com"
                     />
                     {errors.email && (
-                      <p className="text-red-600 text-sm mt-1">{errors.email.message}</p>
+                      <p className="mt-1 text-sm text-red-600">
+                        {errors.email.message}
+                      </p>
                     )}
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label
+                      htmlFor="phone"
+                      className="mb-2 block text-sm font-medium text-gray-700"
+                    >
                       Phone Number
                     </label>
                     <input
@@ -144,7 +173,10 @@ export default function ContactPage() {
                     />
                   </div>
                   <div>
-                    <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label
+                      htmlFor="company"
+                      className="mb-2 block text-sm font-medium text-gray-700"
+                    >
                       Company
                     </label>
                     <input
@@ -158,12 +190,17 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label
+                    htmlFor="service"
+                    className="mb-2 block text-sm font-medium text-gray-700"
+                  >
                     Service Interested In *
                   </label>
                   <select
                     id="service"
-                    {...register('service', { required: 'Please select a service' })}
+                    {...register('service', {
+                      required: 'Please select a service',
+                    })}
                     className="input"
                   >
                     <option value="">Select a service</option>
@@ -175,13 +212,18 @@ export default function ContactPage() {
                     <option value="Other">Other</option>
                   </select>
                   {errors.service && (
-                    <p className="text-red-600 text-sm mt-1">{errors.service.message}</p>
+                    <p className="mt-1 text-sm text-red-600">
+                      {errors.service.message}
+                    </p>
                   )}
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                   <div>
-                    <label htmlFor="budget" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label
+                      htmlFor="budget"
+                      className="mb-2 block text-sm font-medium text-gray-700"
+                    >
                       Budget Range
                     </label>
                     <select
@@ -192,12 +234,17 @@ export default function ContactPage() {
                       <option value="">Select budget range</option>
                       <option value="Under $5,000">Under $5,000</option>
                       <option value="$5,000 - $15,000">$5,000 - $15,000</option>
-                      <option value="$15,000 - $50,000">$15,000 - $50,000</option>
+                      <option value="$15,000 - $50,000">
+                        $15,000 - $50,000
+                      </option>
                       <option value="$50,000+">$50,000+</option>
                     </select>
                   </div>
                   <div>
-                    <label htmlFor="timeline" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label
+                      htmlFor="timeline"
+                      className="mb-2 block text-sm font-medium text-gray-700"
+                    >
                       Project Timeline
                     </label>
                     <select
@@ -215,18 +262,25 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label
+                    htmlFor="message"
+                    className="mb-2 block text-sm font-medium text-gray-700"
+                  >
                     Project Details *
                   </label>
                   <textarea
                     id="message"
                     rows={6}
-                    {...register('message', { required: 'Message is required' })}
+                    {...register('message', {
+                      required: 'Message is required',
+                    })}
                     className="textarea"
                     placeholder="Tell us about your project requirements, goals, and any specific features you need..."
                   />
                   {errors.message && (
-                    <p className="text-red-600 text-sm mt-1">{errors.message.message}</p>
+                    <p className="mt-1 text-sm text-red-600">
+                      {errors.message.message}
+                    </p>
                   )}
                 </div>
 
@@ -239,7 +293,7 @@ export default function ContactPage() {
                 >
                   {isSubmitting ? (
                     <>
-                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                      <div className="mr-2 h-5 w-5 animate-spin rounded-full border-b-2 border-white"></div>
                       Sending Message...
                     </>
                   ) : (
@@ -254,17 +308,21 @@ export default function ContactPage() {
 
             {/* Contact Information */}
             <div>
-              <h2 className="text-3xl font-bold text-secondary mb-6">Contact Information</h2>
+              <h2 className="mb-6 text-3xl font-bold text-secondary">
+                Contact Information
+              </h2>
               <div className="space-y-8">
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-primary/10">
                     <FiMail className="text-primary" size={24} />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-secondary mb-2">Email</h3>
+                    <h3 className="mb-2 text-lg font-semibold text-secondary">
+                      Email
+                    </h3>
                     <a
                       href={`mailto:${siteConfig.contact.email}`}
-                      className="text-gray-600 hover:text-primary transition-colors duration-200"
+                      className="text-gray-600 transition-colors duration-200 hover:text-primary"
                     >
                       {siteConfig.contact.email}
                     </a>
@@ -272,14 +330,16 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-primary/10">
                     <FiPhone className="text-primary" size={24} />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-secondary mb-2">Phone</h3>
+                    <h3 className="mb-2 text-lg font-semibold text-secondary">
+                      Phone
+                    </h3>
                     <a
                       href={`tel:${siteConfig.contact.phone}`}
-                      className="text-gray-600 hover:text-primary transition-colors duration-200"
+                      className="text-gray-600 transition-colors duration-200 hover:text-primary"
                     >
                       {siteConfig.contact.phone}
                     </a>
@@ -287,25 +347,31 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-primary/10">
                     <FiMapPin className="text-primary" size={24} />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-secondary mb-2">Location</h3>
-                    <p className="text-gray-600">{siteConfig.contact.address}</p>
-                    <p className="text-sm text-gray-500 mt-1">
+                    <h3 className="mb-2 text-lg font-semibold text-secondary">
+                      Location
+                    </h3>
+                    <p className="text-gray-600">
+                      {siteConfig.contact.address}
+                    </p>
+                    <p className="mt-1 text-sm text-gray-500">
                       Timezone: {siteConfig.contact.timezone}
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-primary/10">
                     <FiClock className="text-primary" size={24} />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-secondary mb-2">Business Hours</h3>
-                    <div className="text-gray-600 space-y-1">
+                    <h3 className="mb-2 text-lg font-semibold text-secondary">
+                      Business Hours
+                    </h3>
+                    <div className="space-y-1 text-gray-600">
                       <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
                       <p>Saturday: 10:00 AM - 4:00 PM</p>
                       <p>Sunday: Closed</p>
@@ -315,11 +381,13 @@ export default function ContactPage() {
               </div>
 
               {/* Response Time */}
-              <div className="mt-8 p-6 bg-gray-50 rounded-lg">
-                <h3 className="text-lg font-semibold text-secondary mb-3">Response Time</h3>
-                <p className="text-gray-600 mb-4">
-                  We typically respond to all inquiries within 24 hours during business days. 
-                  For urgent matters, please call us directly.
+              <div className="mt-8 rounded-lg bg-gray-50 p-6">
+                <h3 className="mb-3 text-lg font-semibold text-secondary">
+                  Response Time
+                </h3>
+                <p className="mb-4 text-gray-600">
+                  We typically respond to all inquiries within 24 hours during
+                  business days. For urgent matters, please call us directly.
                 </p>
                 <div className="space-y-2 text-sm text-gray-600">
                   <p>• Email inquiries: Within 24 hours</p>
@@ -335,42 +403,49 @@ export default function ContactPage() {
       {/* FAQ Section */}
       <section className="section-padding bg-gray-50">
         <Container>
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-secondary mb-4">
+          <div className="mb-16 text-center">
+            <h2 className="mb-4 text-3xl font-bold text-secondary lg:text-4xl">
               Frequently Asked Questions
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Here are some common questions we receive. Don't see your question? 
-              Feel free to contact us directly.
+            <p className="mx-auto max-w-3xl text-xl text-gray-600">
+              Here are some common questions we receive. Don't see your
+              question? Feel free to contact us directly.
             </p>
           </div>
-          
-          <div className="max-w-3xl mx-auto space-y-6">
+
+          <div className="mx-auto max-w-3xl space-y-6">
             {[
               {
                 question: 'How long does a typical project take?',
-                answer: 'Project timelines vary depending on complexity and scope. Simple websites take 2-4 weeks, while complex applications can take 3-6 months or more. We provide detailed timelines during the consultation phase.',
+                answer:
+                  'Project timelines vary depending on complexity and scope. Simple websites take 2-4 weeks, while complex applications can take 3-6 months or more. We provide detailed timelines during the consultation phase.',
               },
               {
                 question: 'What is your development process?',
-                answer: 'We follow an agile development methodology with regular client communication, iterative development, and continuous testing. Our process includes discovery, design, development, testing, and deployment phases.',
+                answer:
+                  'We follow an agile development methodology with regular client communication, iterative development, and continuous testing. Our process includes discovery, design, development, testing, and deployment phases.',
               },
               {
                 question: 'Do you provide ongoing support and maintenance?',
-                answer: 'Yes, we offer comprehensive support and maintenance packages. This includes bug fixes, updates, security patches, and feature enhancements. We also provide 24/7 monitoring for critical applications.',
+                answer:
+                  'Yes, we offer comprehensive support and maintenance packages. This includes bug fixes, updates, security patches, and feature enhancements. We also provide 24/7 monitoring for critical applications.',
               },
               {
                 question: 'What technologies do you work with?',
-                answer: 'We work with modern technologies including React, Next.js, Node.js, Python, Java, AWS, Azure, and more. We choose the best technology stack based on your project requirements.',
+                answer:
+                  'We work with modern technologies including React, Next.js, Node.js, Python, Java, AWS, Azure, and more. We choose the best technology stack based on your project requirements.',
               },
               {
                 question: 'How do you ensure project quality?',
-                answer: 'We follow industry best practices including code reviews, automated testing, continuous integration, and regular quality assurance checks. All projects go through comprehensive testing before deployment.',
+                answer:
+                  'We follow industry best practices including code reviews, automated testing, continuous integration, and regular quality assurance checks. All projects go through comprehensive testing before deployment.',
               },
             ].map((faq, index) => (
-              <div key={index} className="bg-white rounded-lg p-6 shadow-sm">
-                <h3 className="text-lg font-semibold text-secondary mb-3">{faq.question}</h3>
-                <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
+              <div key={index} className="rounded-lg bg-white p-6 shadow-sm">
+                <h3 className="mb-3 text-lg font-semibold text-secondary">
+                  {faq.question}
+                </h3>
+                <p className="leading-relaxed text-gray-600">{faq.answer}</p>
               </div>
             ))}
           </div>
@@ -379,4 +454,3 @@ export default function ContactPage() {
     </>
   );
 }
-

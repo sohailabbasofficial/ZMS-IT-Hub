@@ -152,7 +152,9 @@ export function generateMetadata({
   url?: string;
   type?: string;
 }): Metadata {
-  const pageTitle = title.includes(siteConfig.name) ? title : `${title} | ${siteConfig.name}`;
+  const pageTitle = title.includes(siteConfig.name)
+    ? title
+    : `${title} | ${siteConfig.name}`;
   const pageUrl = url || siteConfig.url;
   const pageImage = image || siteConfig.ogImage;
 
@@ -186,4 +188,3 @@ export function generateMetadata({
     },
   };
 }
-

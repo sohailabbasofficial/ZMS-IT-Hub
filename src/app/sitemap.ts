@@ -3,7 +3,7 @@ import { siteConfig } from '@/lib/config';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = siteConfig.url;
-  
+
   // Static pages
   const staticPages = [
     {
@@ -80,4 +80,3 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [...staticPages, ...servicePages, ...industryPages];
 }
-

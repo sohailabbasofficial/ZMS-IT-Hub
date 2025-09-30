@@ -93,7 +93,12 @@ export function GTMNoScript() {
 }
 
 // Analytics event tracking functions
-export const trackEvent = (action: string, category: string, label?: string, value?: number) => {
+export const trackEvent = (
+  action: string,
+  category: string,
+  label?: string,
+  value?: number
+) => {
   if (typeof window !== 'undefined' && window.gtag) {
     window.gtag('event', action, {
       event_category: category,
@@ -126,4 +131,3 @@ export const trackDownload = (fileName: string) => {
 export const trackExternalLink = (url: string) => {
   trackEvent('click', 'external_link', url);
 };
-

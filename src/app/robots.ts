@@ -6,12 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: [
-          '/api/',
-          '/admin/',
-          '/_next/',
-          '/private/',
-        ],
+        disallow: ['/api/', '/admin/', '/_next/', '/private/'],
       },
       {
         userAgent: 'GPTBot',
@@ -38,4 +33,3 @@ export default function robots(): MetadataRoute.Robots {
     host: 'https://zmsithub.com',
   };
 }
-

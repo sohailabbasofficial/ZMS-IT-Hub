@@ -2,9 +2,9 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [main, develop]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   lint-and-type-check:
@@ -200,4 +200,3 @@ jobs:
         run: |
           echo "🚀 Successfully deployed to production!"
           echo "URL: https://zmsithub.com"
-

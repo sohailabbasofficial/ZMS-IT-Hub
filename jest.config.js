@@ -1,6 +1,5 @@
-import type { Config } from '@jest/types';
-
-const config: Config.InitialOptions = {
+/** @type {import('jest').Config} */
+const config = {
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   moduleNameMapping: {
@@ -35,5 +34,4 @@ const config: Config.InitialOptions = {
   },
 };
 
-export default config;
-
+module.exports = config;

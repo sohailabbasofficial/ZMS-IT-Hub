@@ -1,12 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { useState } from 'react';
 import { FiMenu, FiX, FiChevronDown } from 'react-icons/fi';
-import { siteConfig } from '@/lib/config';
-import { cn } from '@/lib/utils';
 import Logo from '@/components/ui/Logo';
+import { DarkModeToggle } from '@/components/animations/InteractiveElements';
 
 interface NavigationItem {
   label: string;
@@ -21,9 +19,18 @@ const navigation: NavigationItem[] = [
     label: 'Services',
     href: '/services',
     children: [
-      { label: 'Custom Software Development', href: '/services/custom-software-development' },
-      { label: 'Mobile App Development', href: '/services/mobile-app-development' },
-      { label: 'Web Application Development', href: '/services/web-application-development' },
+      {
+        label: 'Custom Software Development',
+        href: '/services/custom-software-development',
+      },
+      {
+        label: 'Mobile App Development',
+        href: '/services/mobile-app-development',
+      },
+      {
+        label: 'Web Application Development',
+        href: '/services/web-application-development',
+      },
       { label: 'Cloud & DevOps', href: '/services/cloud-devops' },
       { label: 'QA & Testing', href: '/services/qa-testing' },
       { label: 'UI/UX Design', href: '/services/ui-ux-design' },
@@ -44,36 +51,38 @@ export default function Header() {
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
-    <header className="bg-white shadow-lg sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+    <header className="sticky top-0 z-50 bg-white shadow-lg">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Logo />
+          <Logo width={48} height={48} />
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden items-center space-x-8 md:flex">
             {navigation.map((item) => (
-              <div key={item.label} className="relative group">
+              <div key={item.label} className="group relative">
                 <Link
                   href={item.href}
-                  className="text-gray-700 hover:text-primary transition-colors duration-200 font-medium"
-                  onMouseEnter={() => item.children && setActiveDropdown(item.label)}
+                  className="font-medium text-gray-700 transition-colors duration-200 hover:text-primary"
+                  onMouseEnter={() =>
+                    item.children && setActiveDropdown(item.label)
+                  }
                   onMouseLeave={() => setActiveDropdown(null)}
                 >
                   {item.label}
                   {item.children && (
-                    <FiChevronDown className="inline-block ml-1 w-4 h-4" />
+                    <FiChevronDown className="ml-1 inline-block h-4 w-4" />
                   )}
                 </Link>
 
                 {/* Dropdown Menu */}
                 {item.children && activeDropdown === item.label && (
-                  <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
+                  <div className="absolute left-0 top-full z-50 mt-2 w-64 rounded-lg border border-gray-200 bg-white py-2 shadow-lg">
                     {item.children.map((child) => (
                       <Link
                         key={child.href}
                         href={child.href}
-                        className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors duration-200"
+                        className="block px-4 py-2 text-gray-700 transition-colors duration-200 hover:bg-gray-50 hover:text-primary"
                       >
                         {child.label}
                       </Link>
@@ -84,11 +93,12 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* CTA Button */}
-          <div className="hidden md:flex items-center space-x-4">
+          {/* CTA Button & Dark Mode */}
+          <div className="hidden items-center space-x-4 md:flex">
+            <DarkModeToggle />
             <Link
               href="/contact"
-              className="bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary-dark transition-colors duration-200 font-medium"
+              className="rounded-lg bg-primary px-6 py-2 font-medium text-white transition-colors duration-200 hover:bg-primary-dark"
             >
               Get Quote
             </Link>
@@ -97,7 +107,7 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMenu}
-            className="md:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+            className="rounded-lg p-2 text-gray-700 transition-colors duration-200 hover:bg-gray-100 md:hidden"
             aria-label="Toggle menu"
           >
             {isMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
@@ -106,13 +116,13 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-gray-200">
+          <div className="border-t border-gray-200 py-4 md:hidden">
             <nav className="space-y-2">
               {navigation.map((item) => (
                 <div key={item.label}>
                   <Link
                     href={item.href}
-                    className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors duration-200 font-medium"
+                    className="block px-4 py-2 font-medium text-gray-700 transition-colors duration-200 hover:bg-gray-50 hover:text-primary"
                     onClick={closeMenu}
                   >
                     {item.label}
@@ -123,7 +133,7 @@ export default function Header() {
                         <Link
                           key={child.href}
                           href={child.href}
-                          className="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-primary transition-colors duration-200"
+                          className="block px-4 py-2 text-sm text-gray-600 transition-colors duration-200 hover:bg-gray-50 hover:text-primary"
                           onClick={closeMenu}
                         >
                           {child.label}
@@ -136,7 +146,7 @@ export default function Header() {
               <div className="px-4 pt-4">
                 <Link
                   href="/contact"
-                  className="block w-full bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary-dark transition-colors duration-200 font-medium text-center"
+                  className="block w-full rounded-lg bg-primary px-6 py-2 text-center font-medium text-white transition-colors duration-200 hover:bg-primary-dark"
                   onClick={closeMenu}
                 >
                   Get Quote
@@ -149,4 +159,3 @@ export default function Header() {
     </header>
   );
 }
-

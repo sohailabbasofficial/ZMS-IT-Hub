@@ -1,6 +1,7 @@
 export const siteConfig = {
   name: 'ZMS IT Hub',
-  description: 'Leading software development company specializing in custom solutions, mobile apps, web applications, and digital transformation services.',
+  description:
+    'Leading software development company specializing in custom solutions, mobile apps, web applications, and digital transformation services.',
   url: 'https://zmsithub.com',
   logo: '/images/logo.png',
   ogImage: 'https://zmsithub.com/og-image.jpg',
@@ -10,6 +11,7 @@ export const siteConfig = {
     linkedin: 'https://www.linkedin.com/company/109129279/admin/dashboard/',
     facebook: 'https://www.facebook.com/share/1JAdxRGyk9/',
     instagram: 'https://www.instagram.com/zmsithub/',
+    github: 'https://github.com/zmsithub',
   },
   contact: {
     email: 'zmsithub@gmail.com',
@@ -22,27 +24,32 @@ export const siteConfig = {
     linkedin: 'zms-it-hub',
     facebook: 'zmsithub',
     instagram: 'zmsithub',
+    github: 'zmsithub',
   },
   services: [
     {
       title: 'Custom Software Development',
       slug: 'custom-software-development',
-      description: 'Tailored software solutions built to meet your specific business requirements.',
+      description:
+        'Tailored software solutions built to meet your specific business requirements.',
     },
     {
       title: 'Mobile App Development',
       slug: 'mobile-app-development',
-      description: 'Native and cross-platform mobile applications for iOS and Android.',
+      description:
+        'Native and cross-platform mobile applications for iOS and Android.',
     },
     {
       title: 'Web Application Development',
       slug: 'web-application-development',
-      description: 'Modern, responsive web applications with cutting-edge technologies.',
+      description:
+        'Modern, responsive web applications with cutting-edge technologies.',
     },
     {
       title: 'Cloud & DevOps',
       slug: 'cloud-devops',
-      description: 'Cloud infrastructure setup, migration, and DevOps automation.',
+      description:
+        'Cloud infrastructure setup, migration, and DevOps automation.',
     },
     {
       title: 'QA & Testing',
@@ -52,19 +59,22 @@ export const siteConfig = {
     {
       title: 'UI/UX Design',
       slug: 'ui-ux-design',
-      description: 'User-centered design solutions for optimal user experience.',
+      description:
+        'User-centered design solutions for optimal user experience.',
     },
     {
       title: 'Product Strategy',
       slug: 'product-strategy',
-      description: 'Strategic planning and consultation for digital product development.',
+      description:
+        'Strategic planning and consultation for digital product development.',
     },
   ],
   industries: [
     {
       title: 'FinTech',
       slug: 'fintech',
-      description: 'Financial technology solutions and digital banking platforms.',
+      description:
+        'Financial technology solutions and digital banking platforms.',
     },
     {
       title: 'HealthTech',
@@ -79,8 +89,8 @@ export const siteConfig = {
     {
       title: 'EdTech',
       slug: 'edtech',
-      description: 'Educational technology platforms and learning management systems.',
+      description:
+        'Educational technology platforms and learning management systems.',
     },
   ],
 };
-

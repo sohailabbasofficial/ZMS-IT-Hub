@@ -15,6 +15,7 @@ This guide will help you set up Contentful CMS for the ZMS IT Hub website.
 **Content Type ID**: `blogPost`
 
 **Fields**:
+
 - `title` (Short text, required)
 - `slug` (Short text, required, unique)
 - `excerpt` (Long text, required)
@@ -31,6 +32,7 @@ This guide will help you set up Contentful CMS for the ZMS IT Hub website.
 **Content Type ID**: `caseStudy`
 
 **Fields**:
+
 - `title` (Short text, required)
 - `slug` (Short text, required, unique)
 - `excerpt` (Long text, required)
@@ -57,6 +59,7 @@ This guide will help you set up Contentful CMS for the ZMS IT Hub website.
 **Content Type ID**: `service`
 
 **Fields**:
+
 - `title` (Short text, required)
 - `slug` (Short text, required, unique)
 - `description` (Long text, required)
@@ -79,6 +82,7 @@ This guide will help you set up Contentful CMS for the ZMS IT Hub website.
 **Content Type ID**: `teamMember`
 
 **Fields**:
+
 - `name` (Short text, required)
 - `position` (Short text, required)
 - `bio` (Long text, required)
@@ -96,6 +100,7 @@ This guide will help you set up Contentful CMS for the ZMS IT Hub website.
 **Content Type ID**: `jobPosting`
 
 **Fields**:
+
 - `title` (Short text, required)
 - `slug` (Short text, required, unique)
 - `department` (Short text, required)
@@ -117,6 +122,7 @@ This guide will help you set up Contentful CMS for the ZMS IT Hub website.
 ### Sample Blog Posts
 
 **Post 1: "The Future of Software Development"**
+
 - Title: The Future of Software Development
 - Slug: future-of-software-development
 - Excerpt: Exploring emerging trends and technologies shaping the software development landscape
@@ -127,6 +133,7 @@ This guide will help you set up Contentful CMS for the ZMS IT Hub website.
 - Category: "Technology"
 
 **Post 2: "Best Practices for Mobile App Development"**
+
 - Title: Best Practices for Mobile App Development
 - Slug: best-practices-mobile-app-development
 - Excerpt: Essential guidelines for building successful mobile applications
@@ -139,6 +146,7 @@ This guide will help you set up Contentful CMS for the ZMS IT Hub website.
 ### Sample Case Studies
 
 **Case Study 1: E-commerce Platform**
+
 - Title: Modern E-commerce Platform Development
 - Slug: ecommerce-platform-development
 - Client: TechStart Inc.
@@ -148,6 +156,7 @@ This guide will help you set up Contentful CMS for the ZMS IT Hub website.
 - Results: 40% increase in conversion rate, 60% faster page load times
 
 **Case Study 2: Healthcare Management System**
+
 - Title: Healthcare Management System
 - Slug: healthcare-management-system
 - Client: HealthTech Solutions
@@ -159,6 +168,7 @@ This guide will help you set up Contentful CMS for the ZMS IT Hub website.
 ### Sample Services
 
 **Service 1: Custom Software Development**
+
 - Title: Custom Software Development
 - Slug: custom-software-development
 - Description: Tailored software solutions built to meet your specific business requirements
@@ -166,6 +176,7 @@ This guide will help you set up Contentful CMS for the ZMS IT Hub website.
 - Benefits: ["Increased efficiency", "Reduced costs", "Better user experience"]
 
 **Service 2: Mobile App Development**
+
 - Title: Mobile App Development
 - Slug: mobile-app-development
 - Description: Native and cross-platform mobile applications for iOS and Android
@@ -191,18 +202,21 @@ This guide will help you set up Contentful CMS for the ZMS IT Hub website.
 ## 6. Content Management Best Practices
 
 ### Image Optimization
+
 - Use WebP format when possible
 - Optimize images before uploading
 - Use descriptive alt text
 - Maintain consistent aspect ratios
 
 ### Content Structure
+
 - Use consistent naming conventions
 - Create reusable content blocks
 - Organize content with tags and categories
 - Set up content workflows for approval
 
 ### SEO Optimization
+
 - Write descriptive titles and excerpts
 - Use relevant tags and categories
 - Include internal links
@@ -221,12 +235,14 @@ If you have existing content:
 ## 8. Training Team Members
 
 ### Content Editors
+
 - How to create and edit content
 - Image upload and optimization
 - Publishing workflow
 - Content organization
 
 ### Developers
+
 - API integration
 - Content modeling
 - Preview mode setup

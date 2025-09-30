@@ -18,11 +18,13 @@ A production-ready, SEO-first, highly-performant Next.js website for ZMS IT Hub 
 ## 🎨 Design System
 
 ### Color Palette
+
 - **Primary**: `#751A1A` (Dark Maroon)
 - **Secondary**: `#000000` (Black)
 - **Accent**: `#FFFFFF` (White)
 
 ### Typography
+
 - **Headings**: Poppins (Google Fonts)
 - **Body**: Inter (Google Fonts)
 
@@ -65,7 +67,7 @@ zms-it-hub-website/
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - npm 8+
 - Git
 
@@ -183,7 +185,6 @@ npm start
 
 2. **Content Types**
    Create the following content types in Contentful:
-
    - **Blog Post**: title, slug, excerpt, content, featuredImage, author, publishedAt, tags, category
    - **Case Study**: title, slug, excerpt, content, featuredImage, client, project, publishedAt
    - **Service**: title, slug, description, content, icon, features, benefits, process, pricing
@@ -234,6 +235,7 @@ npm run test:e2e
 ```
 
 E2E tests cover:
+
 - Page navigation
 - Contact form submission
 - Mobile responsiveness
@@ -243,12 +245,14 @@ E2E tests cover:
 ## 📊 Performance Optimization
 
 ### Lighthouse Scores Target
+
 - **Performance**: 90+
 - **Accessibility**: 95+
 - **Best Practices**: 95+
 - **SEO**: 95+
 
 ### Optimization Features
+
 - Image optimization with `next/image`
 - Code splitting and lazy loading
 - Static generation where possible
@@ -327,4 +331,5 @@ For support and questions:
 ---
 
 **Built with ❤️ by ZMS IT Hub**
+
 # ZMS-IT-Hub

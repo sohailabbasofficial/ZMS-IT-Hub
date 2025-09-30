@@ -1,12 +1,20 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { FiMapPin, FiClock, FiDollarSign, FiUsers, FiBriefcase, FiMail } from 'react-icons/fi';
+import {
+  FiMapPin,
+  FiClock,
+  FiDollarSign,
+  FiUsers,
+  FiBriefcase,
+  FiMail,
+} from 'react-icons/fi';
 import Container from '@/components/ui/Container';
 import Button from '@/components/ui/Button';
 
 export const metadata: Metadata = {
   title: 'Careers at ZMS IT Hub | Join Our Software Development Team',
-  description: 'Explore exciting career opportunities at ZMS IT Hub. Join our team of talented developers, designers, and strategists building innovative software solutions.',
+  description:
+    'Explore exciting career opportunities at ZMS IT Hub. Join our team of talented developers, designers, and strategists building innovative software solutions.',
   keywords: [
     'careers ZMS IT Hub',
     'software developer jobs Pakistan',
@@ -24,7 +32,8 @@ export default function CareersPage() {
       location: 'Remote / Karachi',
       type: 'full-time',
       experience: '3-5 years',
-      description: 'We are looking for an experienced full-stack developer to join our team and work on exciting projects.',
+      description:
+        'We are looking for an experienced full-stack developer to join our team and work on exciting projects.',
       requirements: [
         '3+ years of experience in React and Node.js',
         'Strong knowledge of TypeScript',
@@ -52,7 +61,8 @@ export default function CareersPage() {
       location: 'Karachi',
       type: 'full-time',
       experience: '2-4 years',
-      description: 'Join our design team to create beautiful and functional user interfaces for web and mobile applications.',
+      description:
+        'Join our design team to create beautiful and functional user interfaces for web and mobile applications.',
       requirements: [
         '2+ years of UI/UX design experience',
         'Proficiency in Figma, Adobe Creative Suite',
@@ -80,7 +90,8 @@ export default function CareersPage() {
       location: 'Remote',
       type: 'full-time',
       experience: '2-4 years',
-      description: 'Help us build and maintain robust cloud infrastructure and deployment pipelines.',
+      description:
+        'Help us build and maintain robust cloud infrastructure and deployment pipelines.',
       requirements: [
         '2+ years of DevOps experience',
         'Knowledge of Docker and Kubernetes',
@@ -108,38 +119,42 @@ export default function CareersPage() {
     {
       icon: FiDollarSign,
       title: 'Competitive Salary',
-      description: 'Market-competitive compensation packages with performance bonuses.',
+      description:
+        'Market-competitive compensation packages with performance bonuses.',
     },
     {
       icon: FiUsers,
       title: 'Team Environment',
-      description: 'Collaborative and supportive work culture with talented professionals.',
+      description:
+        'Collaborative and supportive work culture with talented professionals.',
     },
     {
       icon: FiBriefcase,
       title: 'Career Growth',
-      description: 'Clear career progression paths and professional development opportunities.',
+      description:
+        'Clear career progression paths and professional development opportunities.',
     },
     {
       icon: FiClock,
       title: 'Work-Life Balance',
-      description: 'Flexible working hours and remote work options for better work-life balance.',
+      description:
+        'Flexible working hours and remote work options for better work-life balance.',
     },
   ];
 
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary to-primary-dark text-white section-padding">
+      <section className="section-padding bg-gradient-to-br from-primary to-primary-dark text-white">
         <Container>
-          <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-4xl lg:text-6xl font-bold mb-6">
+          <div className="mx-auto max-w-4xl text-center">
+            <h1 className="mb-6 text-4xl font-bold lg:text-6xl">
               Join Our Team
             </h1>
-            <p className="text-xl text-gray-200 leading-relaxed">
-              Be part of a dynamic team building innovative software solutions. 
-              We're looking for passionate individuals who want to make a difference 
-              in the tech industry.
+            <p className="text-xl leading-relaxed text-gray-200">
+              Be part of a dynamic team building innovative software solutions.
+              We're looking for passionate individuals who want to make a
+              difference in the tech industry.
             </p>
           </div>
         </Container>
@@ -148,24 +163,28 @@ export default function CareersPage() {
       {/* Company Benefits Section */}
       <section className="section-padding">
         <Container>
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-secondary mb-4">
+          <div className="mb-16 text-center">
+            <h2 className="mb-4 text-3xl font-bold text-secondary lg:text-4xl">
               Why Work With Us?
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We offer more than just a job - we provide an environment where you can 
-              grow, learn, and contribute to meaningful projects.
+            <p className="mx-auto max-w-3xl text-xl text-gray-600">
+              We offer more than just a job - we provide an environment where
+              you can grow, learn, and contribute to meaningful projects.
             </p>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
             {companyBenefits.map((benefit, index) => (
               <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
                   <benefit.icon className="text-primary" size={32} />
                 </div>
-                <h3 className="text-xl font-semibold text-secondary mb-4">{benefit.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{benefit.description}</p>
+                <h3 className="mb-4 text-xl font-semibold text-secondary">
+                  {benefit.title}
+                </h3>
+                <p className="leading-relaxed text-gray-600">
+                  {benefit.description}
+                </p>
               </div>
             ))}
           </div>
@@ -175,21 +194,27 @@ export default function CareersPage() {
       {/* Job Openings Section */}
       <section className="section-padding bg-gray-50">
         <Container>
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-secondary mb-4">
+          <div className="mb-16 text-center">
+            <h2 className="mb-4 text-3xl font-bold text-secondary lg:text-4xl">
               Current Openings
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Explore our current job openings and find the perfect role for your career goals.
+            <p className="mx-auto max-w-3xl text-xl text-gray-600">
+              Explore our current job openings and find the perfect role for
+              your career goals.
             </p>
           </div>
-          
+
           <div className="space-y-8">
             {jobOpenings.map((job, index) => (
-              <div key={index} className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300">
-                <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-6">
+              <div
+                key={index}
+                className="rounded-xl bg-white p-8 shadow-lg transition-shadow duration-300 hover:shadow-xl"
+              >
+                <div className="mb-6 flex flex-col lg:flex-row lg:items-center lg:justify-between">
                   <div>
-                    <h3 className="text-2xl font-semibold text-secondary mb-2">{job.title}</h3>
+                    <h3 className="mb-2 text-2xl font-semibold text-secondary">
+                      {job.title}
+                    </h3>
                     <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600">
                       <div className="flex items-center space-x-1">
                         <FiBriefcase size={16} />
@@ -210,47 +235,68 @@ export default function CareersPage() {
                     </div>
                   </div>
                   <div className="mt-4 lg:mt-0">
-                    <div className="text-lg font-semibold text-primary mb-2">
-                      {job.salary.min.toLocaleString()} - {job.salary.max.toLocaleString()} {job.salary.currency}
+                    <div className="mb-2 text-lg font-semibold text-primary">
+                      {job.salary.min.toLocaleString()} -{' '}
+                      {job.salary.max.toLocaleString()} {job.salary.currency}
                     </div>
                     <div className="text-sm text-gray-500">
                       Posted: {new Date(job.publishedAt).toLocaleDateString()}
                     </div>
                   </div>
                 </div>
-                
-                <p className="text-gray-700 mb-6 leading-relaxed">{job.description}</p>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+
+                <p className="mb-6 leading-relaxed text-gray-700">
+                  {job.description}
+                </p>
+
+                <div className="mb-8 grid grid-cols-1 gap-8 md:grid-cols-2">
                   <div>
-                    <h4 className="text-lg font-semibold text-secondary mb-4">Requirements</h4>
+                    <h4 className="mb-4 text-lg font-semibold text-secondary">
+                      Requirements
+                    </h4>
                     <ul className="space-y-2">
                       {job.requirements.map((requirement, reqIndex) => (
-                        <li key={reqIndex} className="flex items-start space-x-2">
-                          <span className="text-primary mt-1">•</span>
+                        <li
+                          key={reqIndex}
+                          className="flex items-start space-x-2"
+                        >
+                          <span className="mt-1 text-primary">•</span>
                           <span className="text-gray-700">{requirement}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-secondary mb-4">Benefits</h4>
+                    <h4 className="mb-4 text-lg font-semibold text-secondary">
+                      Benefits
+                    </h4>
                     <ul className="space-y-2">
                       {job.benefits.map((benefit, benIndex) => (
-                        <li key={benIndex} className="flex items-start space-x-2">
-                          <span className="text-primary mt-1">•</span>
+                        <li
+                          key={benIndex}
+                          className="flex items-start space-x-2"
+                        >
+                          <span className="mt-1 text-primary">•</span>
                           <span className="text-gray-700">{benefit}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
                 </div>
-                
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Button variant="primary" size="lg" href={`/careers/apply?position=${job.title}`}>
+
+                <div className="flex flex-col gap-4 sm:flex-row">
+                  <Button
+                    variant="primary"
+                    size="lg"
+                    href={`/careers/apply?position=${job.title}`}
+                  >
                     Apply Now
                   </Button>
-                  <Button variant="outline" size="lg" href={`/careers/${job.title.toLowerCase().replace(/\s+/g, '-')}`}>
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    href={`/careers/${job.title.toLowerCase().replace(/\s+/g, '-')}`}
+                  >
                     View Details
                   </Button>
                 </div>
@@ -263,32 +309,35 @@ export default function CareersPage() {
       {/* Application Process Section */}
       <section className="section-padding">
         <Container>
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-secondary mb-4">
+          <div className="mb-16 text-center">
+            <h2 className="mb-4 text-3xl font-bold text-secondary lg:text-4xl">
               Application Process
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Our hiring process is designed to be transparent and efficient, 
+            <p className="mx-auto max-w-3xl text-xl text-gray-600">
+              Our hiring process is designed to be transparent and efficient,
               ensuring we find the right fit for both you and our team.
             </p>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
             {[
               {
                 step: '01',
                 title: 'Application',
-                description: 'Submit your application with resume and portfolio.',
+                description:
+                  'Submit your application with resume and portfolio.',
               },
               {
                 step: '02',
                 title: 'Initial Review',
-                description: 'Our team reviews your application and qualifications.',
+                description:
+                  'Our team reviews your application and qualifications.',
               },
               {
                 step: '03',
                 title: 'Interview',
-                description: 'Technical and cultural fit interview with our team.',
+                description:
+                  'Technical and cultural fit interview with our team.',
               },
               {
                 step: '04',
@@ -297,11 +346,17 @@ export default function CareersPage() {
               },
             ].map((step, index) => (
               <div key={index} className="text-center">
-                <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
-                  <span className="text-white font-bold text-xl">{step.step}</span>
+                <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-primary">
+                  <span className="text-xl font-bold text-white">
+                    {step.step}
+                  </span>
                 </div>
-                <h3 className="text-xl font-semibold text-secondary mb-4">{step.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{step.description}</p>
+                <h3 className="mb-4 text-xl font-semibold text-secondary">
+                  {step.title}
+                </h3>
+                <p className="leading-relaxed text-gray-600">
+                  {step.description}
+                </p>
               </div>
             ))}
           </div>
@@ -311,13 +366,13 @@ export default function CareersPage() {
       {/* Culture Section */}
       <section className="section-padding bg-gray-50">
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
             <div>
-              <h2 className="text-3xl lg:text-4xl font-bold text-secondary mb-6">
+              <h2 className="mb-6 text-3xl font-bold text-secondary lg:text-4xl">
                 Our Culture
               </h2>
-              <p className="text-xl text-gray-600 mb-8">
-                At ZMS IT Hub, we believe in fostering a culture of innovation, 
+              <p className="mb-8 text-xl text-gray-600">
+                At ZMS IT Hub, we believe in fostering a culture of innovation,
                 collaboration, and continuous learning.
               </p>
               <div className="space-y-6">
@@ -330,8 +385,8 @@ export default function CareersPage() {
                   'Open communication culture',
                 ].map((value, index) => (
                   <div key={index} className="flex items-center space-x-3">
-                    <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
-                      <span className="text-white text-sm">✓</span>
+                    <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary">
+                      <span className="text-sm text-white">✓</span>
                     </div>
                     <span className="text-gray-700">{value}</span>
                   </div>
@@ -342,7 +397,7 @@ export default function CareersPage() {
               <img
                 src="/images/team-culture.jpg"
                 alt="ZMS IT Hub Team Culture"
-                className="rounded-2xl shadow-lg w-full"
+                className="w-full rounded-2xl shadow-lg"
               />
             </div>
           </div>
@@ -353,14 +408,15 @@ export default function CareersPage() {
       <section className="section-padding bg-primary text-white">
         <Container>
           <div className="text-center">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4">
+            <h2 className="mb-4 text-3xl font-bold lg:text-4xl">
               Ready to Join Our Team?
             </h2>
-            <p className="text-xl text-gray-200 mb-8 max-w-3xl mx-auto">
-              Don't see a position that matches your skills? We're always looking for 
-              talented individuals. Send us your resume and let's start a conversation.
+            <p className="mx-auto mb-8 max-w-3xl text-xl text-gray-200">
+              Don't see a position that matches your skills? We're always
+              looking for talented individuals. Send us your resume and let's
+              start a conversation.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col justify-center gap-4 sm:flex-row">
               <Button variant="secondary" size="lg" href="/contact">
                 Send Resume
               </Button>

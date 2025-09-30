@@ -3,6 +3,7 @@
 ## Pre-Deployment Checklist
 
 ### ✅ Environment Variables
+
 - [ ] Contentful Space ID and Access Token configured
 - [ ] Google Analytics ID (GA4) configured
 - [ ] Google Tag Manager ID configured (optional)
@@ -11,12 +12,14 @@
 - [ ] All sensitive data moved to environment variables
 
 ### ✅ Content Management
+
 - [ ] Contentful content types created
 - [ ] Sample content added to CMS
 - [ ] Content preview mode tested
 - [ ] Image assets uploaded and optimized
 
 ### ✅ SEO Configuration
+
 - [ ] Meta titles and descriptions updated
 - [ ] Open Graph images uploaded
 - [ ] Structured data tested
@@ -25,6 +28,7 @@
 - [ ] Canonical URLs set
 
 ### ✅ Analytics Setup
+
 - [ ] Google Analytics 4 property created
 - [ ] Goals and conversions configured
 - [ ] Google Tag Manager container created (if using)
@@ -32,6 +36,7 @@
 - [ ] Analytics dashboard access granted to team
 
 ### ✅ Performance Optimization
+
 - [ ] Images optimized and compressed
 - [ ] Code splitting implemented
 - [ ] Lazy loading enabled
@@ -39,6 +44,7 @@
 - [ ] Lighthouse scores meet targets (90+)
 
 ### ✅ Security Configuration
+
 - [ ] HTTPS enforced
 - [ ] Security headers configured
 - [ ] Content Security Policy implemented
@@ -47,6 +53,7 @@
 - [ ] Environment variables secured
 
 ### ✅ Testing
+
 - [ ] Unit tests passing
 - [ ] E2E tests passing
 - [ ] Cross-browser testing completed
@@ -55,6 +62,7 @@
 - [ ] Performance testing completed
 
 ### ✅ Domain & DNS
+
 - [ ] Domain purchased and configured
 - [ ] DNS records updated
 - [ ] SSL certificate installed
@@ -63,6 +71,7 @@
 ## Deployment Steps
 
 ### 1. Vercel Deployment
+
 ```bash
 # Install Vercel CLI
 npm i -g vercel
@@ -75,6 +84,7 @@ vercel --prod
 ```
 
 ### 2. Environment Variables Setup
+
 1. Go to Vercel Dashboard
 2. Select your project
 3. Go to Settings > Environment Variables
@@ -82,6 +92,7 @@ vercel --prod
 5. Set values for Production environment
 
 ### 3. Domain Configuration
+
 1. Go to Vercel Dashboard > Project Settings
 2. Navigate to Domains
 3. Add your custom domain
@@ -89,6 +100,7 @@ vercel --prod
 5. Wait for SSL certificate to be issued
 
 ### 4. Post-Deployment Verification
+
 - [ ] Website loads correctly
 - [ ] All pages accessible
 - [ ] Contact form working
@@ -101,6 +113,7 @@ vercel --prod
 ## Monitoring & Maintenance
 
 ### ✅ Ongoing Tasks
+
 - [ ] Regular content updates
 - [ ] Performance monitoring
 - [ ] Security updates
@@ -109,6 +122,7 @@ vercel --prod
 - [ ] Backup verification
 
 ### ✅ Monthly Checklist
+
 - [ ] Review analytics data
 - [ ] Update content as needed
 - [ ] Check for security updates
@@ -118,6 +132,7 @@ vercel --prod
 ## Troubleshooting
 
 ### Common Issues
+
 1. **Build Failures**: Check environment variables and dependencies
 2. **Image Loading**: Verify image paths and optimization settings
 3. **Analytics Not Working**: Confirm GA ID and GTM configuration
@@ -125,6 +140,7 @@ vercel --prod
 5. **SEO Issues**: Verify meta tags and structured data
 
 ### Support Contacts
+
 - **Technical Issues**: zmsithub@gmail.com
 - **Content Updates**: Contact through CMS
 - **Domain Issues**: Contact domain registrar

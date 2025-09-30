@@ -1,5 +1,11 @@
 import { createClient } from 'contentful';
-import type { ContentfulEntry, BlogPost, CaseStudy, Service, TeamMember, JobPosting } from '@/types';
+import type {
+  BlogPost,
+  CaseStudy,
+  Service,
+  TeamMember,
+  JobPosting,
+} from '@/types';
 
 const client = createClient({
   space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID!,
@@ -12,10 +18,14 @@ const previewClient = createClient({
   host: 'preview.contentful.com',
 });
 
-export const getClient = (preview = false) => (preview ? previewClient : client);
+export const getClient = (preview = false) =>
+  preview ? previewClient : client;
 
 // Blog Posts
-export async function getBlogPosts(limit = 10, preview = false): Promise<BlogPost[]> {
+export async function getBlogPosts(
+  limit = 10,
+  preview = false
+): Promise<BlogPost[]> {
   const client = getClient(preview);
   const entries = await client.getEntries({
     content_type: 'blogPost',
@@ -39,7 +49,10 @@ export async function getBlogPosts(limit = 10, preview = false): Promise<BlogPos
   }));
 }
 
-export async function getBlogPost(slug: string, preview = false): Promise<BlogPost | null> {
+export async function getBlogPost(
+  slug: string,
+  preview = false
+): Promise<BlogPost | null> {
   const client = getClient(preview);
   const entries = await client.getEntries({
     content_type: 'blogPost',
@@ -67,7 +80,10 @@ export async function getBlogPost(slug: string, preview = false): Promise<BlogPo
 }
 
 // Case Studies
-export async function getCaseStudies(limit = 10, preview = false): Promise<CaseStudy[]> {
+export async function getCaseStudies(
+  limit = 10,
+  preview = false
+): Promise<CaseStudy[]> {
   const client = getClient(preview);
   const entries = await client.getEntries({
     content_type: 'caseStudy',
@@ -89,7 +105,10 @@ export async function getCaseStudies(limit = 10, preview = false): Promise<CaseS
   }));
 }
 
-export async function getCaseStudy(slug: string, preview = false): Promise<CaseStudy | null> {
+export async function getCaseStudy(
+  slug: string,
+  preview = false
+): Promise<CaseStudy | null> {
   const client = getClient(preview);
   const entries = await client.getEntries({
     content_type: 'caseStudy',
@@ -136,7 +155,10 @@ export async function getServices(preview = false): Promise<Service[]> {
   }));
 }
 
-export async function getService(slug: string, preview = false): Promise<Service | null> {
+export async function getService(
+  slug: string,
+  preview = false
+): Promise<Service | null> {
   const client = getClient(preview);
   const entries = await client.getEntries({
     content_type: 'service',
@@ -206,7 +228,10 @@ export async function getJobPostings(preview = false): Promise<JobPosting[]> {
   }));
 }
 
-export async function getJobPosting(slug: string, preview = false): Promise<JobPosting | null> {
+export async function getJobPosting(
+  slug: string,
+  preview = false
+): Promise<JobPosting | null> {
   const client = getClient(preview);
   const entries = await client.getEntries({
     content_type: 'jobPosting',
@@ -233,4 +258,3 @@ export async function getJobPosting(slug: string, preview = false): Promise<JobP
     applicationDeadline: entry.fields.applicationDeadline,
   };
 }
-

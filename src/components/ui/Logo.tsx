@@ -11,13 +11,13 @@ interface LogoProps {
   textColor?: string;
 }
 
-export default function Logo({ 
-  className = '', 
-  width = 32, 
-  height = 32, 
+export default function Logo({
+  className = '',
+  width = 32,
+  height = 32,
   showText = true,
   href = '/',
-  textColor = 'text-secondary'
+  textColor = 'text-secondary',
 }: LogoProps) {
   const logoElement = (
     <div className={`flex items-center space-x-2 ${className}`}>
@@ -26,7 +26,7 @@ export default function Logo({
         alt={`${siteConfig.name} Logo`}
         width={width}
         height={height}
-        className={`w-${width/4} h-${height/4}`}
+        className="object-contain"
         priority
       />
       {showText && (
@@ -37,7 +37,10 @@ export default function Logo({
 
   if (href) {
     return (
-      <Link href={href} className="hover:opacity-80 transition-opacity duration-200">
+      <Link
+        href={href}
+        className="transition-opacity duration-200 hover:opacity-80"
+      >
         {logoElement}
       </Link>
     );
