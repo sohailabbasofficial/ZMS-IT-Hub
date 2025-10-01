@@ -87,10 +87,12 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden items-center space-x-8 md:flex">
             {navigation.map((item) => (
-              <div 
-                key={item.label} 
+              <div
+                key={item.label}
                 className="group relative"
-                onMouseEnter={() => item.children && handleMouseEnter(item.label)}
+                onMouseEnter={() =>
+                  item.children && handleMouseEnter(item.label)
+                }
                 onMouseLeave={handleMouseLeave}
               >
                 <Link
@@ -109,7 +111,7 @@ export default function Header() {
 
                 {/* Dropdown Menu */}
                 {item.children && activeDropdown === item.label && (
-                  <div 
+                  <div
                     className="absolute left-0 top-full z-50 w-64 rounded-lg border border-gray-200 bg-white py-2 shadow-lg"
                     onMouseEnter={() => handleMouseEnter(item.label)}
                     onMouseLeave={handleMouseLeave}

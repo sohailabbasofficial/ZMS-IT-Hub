@@ -60,7 +60,7 @@ export default function ContactForm() {
       // - Custom API endpoint
 
       // Simulate API call delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
 
       // For demo purposes, we'll always show success
       // In production, replace this with actual form submission
@@ -78,7 +78,6 @@ export default function ContactForm() {
 
       // Log form data for development (remove in production)
       console.log('Form submitted:', formData);
-      
     } catch (error) {
       console.error('Form submission error:', error);
       setSubmitStatus('error');

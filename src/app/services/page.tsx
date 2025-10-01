@@ -206,7 +206,7 @@ export default function ServicesPage() {
               'GraphQL',
             ].map((tech, index) => (
               <div key={index} className="group text-center">
-                <div className="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br from-primary/10 to-primary/20 transition-all duration-300 group-hover:from-primary group-hover:to-primary-dark group-hover:scale-110 group-hover:shadow-lg">
+                <div className="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br from-primary/10 to-primary/20 transition-all duration-300 group-hover:scale-110 group-hover:from-primary group-hover:to-primary-dark group-hover:shadow-lg">
                   <span className="text-xs font-bold text-primary transition-colors duration-300 group-hover:text-white">
                     {tech}
                   </span>

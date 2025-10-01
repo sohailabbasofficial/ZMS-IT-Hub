@@ -3,7 +3,6 @@ import Head from 'next/head';
 import Header from './Header';
 import Footer from './Footer';
 import WhatsAppContactButton from '@/components/ui/WhatsAppContactButton';
-import CallButton from '@/components/ui/CallButton';
 import { siteConfig } from '@/lib/config';
 
 interface LayoutProps {
@@ -73,7 +72,6 @@ export default function Layout({
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
-        <CallButton />
         <WhatsAppContactButton />
       </div>
     </>

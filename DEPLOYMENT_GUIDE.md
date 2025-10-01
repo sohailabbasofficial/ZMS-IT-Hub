@@ -5,16 +5,19 @@
 Your Next.js website has been successfully exported as static files and is ready for deployment on Hostinger.
 
 ## 📁 Export Location
+
 All static files are located in the `out/` directory.
 
 ## 🎯 Deployment Steps for Hostinger
 
 ### 1. Access Hostinger File Manager
+
 1. Log in to your Hostinger control panel
 2. Navigate to **File Manager**
 3. Go to your domain's `public_html` folder
 
 ### 2. Upload Files
+
 1. **Delete existing files** in `public_html` (if any)
 2. **Upload all contents** from the `out/` folder to `public_html`
 3. Make sure the file structure looks like this:
@@ -35,10 +38,12 @@ All static files are located in the `out/` directory.
    ```
 
 ### 3. Set Up Custom 404 Page
+
 1. In Hostinger File Manager, rename `404.html` to `404.html` (if not already)
 2. This will handle 404 errors properly
 
 ### 4. Configure Domain (if needed)
+
 1. In Hostinger control panel, go to **Domains**
 2. Point your domain to the correct directory
 3. Ensure SSL certificate is enabled
@@ -46,6 +51,7 @@ All static files are located in the `out/` directory.
 ## ✅ What's Included
 
 ### Static Files Generated:
+
 - **Homepage**: `index.html`
 - **About Page**: `about/index.html`
 - **Services Pages**: `services/index.html` and `services/custom-software-development/index.html`
@@ -56,6 +62,7 @@ All static files are located in the `out/` directory.
 - **404 Page**: `404.html`
 
 ### Assets Included:
+
 - **Images**: All your custom images (hero.png, expert.png, logo.png)
 - **CSS**: Optimized stylesheets
 - **JavaScript**: Minified and optimized scripts
@@ -69,11 +76,12 @@ All static files are located in the `out/` directory.
 ✅ **Fast Loading** - Optimized images and code splitting  
 ✅ **Contact Form** - Ready for third-party form services  
 ✅ **Dark Mode** - Toggle functionality works  
-✅ **All Pages** - Complete website structure  
+✅ **All Pages** - Complete website structure
 
 ## 📝 Important Notes
 
 ### Contact Form Setup:
+
 The contact form is ready but needs a third-party service for form submission. Recommended options:
 
 1. **Formspree** (Recommended):
@@ -92,12 +100,14 @@ The contact form is ready but needs a third-party service for form submission. R
    - Update the form handler
 
 ### Performance:
+
 - All images are optimized
 - CSS and JS are minified
 - Code splitting is implemented
 - Static generation ensures fast loading
 
 ### SEO:
+
 - Meta tags are properly set
 - Structured data is included
 - Sitemap is generated
@@ -106,6 +116,7 @@ The contact form is ready but needs a third-party service for form submission. R
 ## 🔧 Future Updates
 
 To update your website:
+
 1. Make changes to your code
 2. Run `npm run export` again
 3. Upload the new `out/` folder contents to Hostinger
@@ -113,6 +124,7 @@ To update your website:
 ## 📞 Support
 
 If you need help with deployment or have questions:
+
 - Check Hostinger's documentation
 - Contact Hostinger support
 - Review the Next.js static export documentation

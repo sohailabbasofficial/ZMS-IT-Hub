@@ -8,10 +8,20 @@ import Container from '@/components/ui/Container';
 const caseStudiesData = {
   'school-management-system': {
     title: 'School Management System',
-    overview: 'A comprehensive digital platform designed to streamline school operations by managing students, teachers, fees, and attendance through a centralized system with online fee collection capabilities.',
-    challenge: 'The school was struggling with manual student record management, which led to frequent errors, delays in fee collection, and difficulty in tracking attendance. The administrative workload was overwhelming, and data accuracy was compromised.',
-    solution: 'We developed a centralized data management system with intuitive dashboards for administrators, teachers, and parents. The solution includes automated fee collection, real-time attendance tracking, and comprehensive reporting features.',
-    technologies: ['React', 'Node.js', 'MongoDB', 'Express.js', 'Material-UI', 'JWT Authentication'],
+    overview:
+      'A comprehensive digital platform designed to streamline school operations by managing students, teachers, fees, and attendance through a centralized system with online fee collection capabilities.',
+    challenge:
+      'The school was struggling with manual student record management, which led to frequent errors, delays in fee collection, and difficulty in tracking attendance. The administrative workload was overwhelming, and data accuracy was compromised.',
+    solution:
+      'We developed a centralized data management system with intuitive dashboards for administrators, teachers, and parents. The solution includes automated fee collection, real-time attendance tracking, and comprehensive reporting features.',
+    technologies: [
+      'React',
+      'Node.js',
+      'MongoDB',
+      'Express.js',
+      'Material-UI',
+      'JWT Authentication',
+    ],
     results: [
       'Reduced administrative workload by 50%',
       'Improved data accuracy by 95%',
@@ -24,10 +34,20 @@ const caseStudiesData = {
   },
   'college-management-system': {
     title: 'College Management System',
-    overview: 'A complete solution for managing courses, exams, and student records with automated exam result processing, student enrollment management, and comprehensive academic tracking.',
-    challenge: 'The college faced significant challenges in handling large-scale student data, managing complex course structures, and processing exam results efficiently. Manual processes were time-consuming and error-prone.',
-    solution: 'We created an automated system that handles student records, course management, exam scheduling, and result processing. The solution includes student portals, faculty dashboards, and administrative controls.',
-    technologies: ['React', 'Node.js', 'PostgreSQL', 'Express.js', 'Ant Design', 'Redis'],
+    overview:
+      'A complete solution for managing courses, exams, and student records with automated exam result processing, student enrollment management, and comprehensive academic tracking.',
+    challenge:
+      'The college faced significant challenges in handling large-scale student data, managing complex course structures, and processing exam results efficiently. Manual processes were time-consuming and error-prone.',
+    solution:
+      'We created an automated system that handles student records, course management, exam scheduling, and result processing. The solution includes student portals, faculty dashboards, and administrative controls.',
+    technologies: [
+      'React',
+      'Node.js',
+      'PostgreSQL',
+      'Express.js',
+      'Ant Design',
+      'Redis',
+    ],
     results: [
       'Improved operational efficiency by 60%',
       'Automated exam result processing',
@@ -40,10 +60,20 @@ const caseStudiesData = {
   },
   'pharmacy-management-system': {
     title: 'Pharmacy Management System',
-    overview: 'A digital solution for comprehensive pharmacy operations including inventory management, sales tracking, prescription handling, and automated alerts for stock levels and expiry dates.',
-    challenge: 'The pharmacy was experiencing frequent stock-outs, inventory mismanagement, and difficulties in tracking prescription sales. Manual inventory management led to financial losses and customer dissatisfaction.',
-    solution: 'We developed a real-time inventory tracking system with automated stock alerts, sales management, prescription tracking, and expiry date notifications. The system includes barcode scanning and automated reordering.',
-    technologies: ['React Native', 'Node.js', 'MongoDB', 'Express.js', 'Barcode Scanner', 'Push Notifications'],
+    overview:
+      'A digital solution for comprehensive pharmacy operations including inventory management, sales tracking, prescription handling, and automated alerts for stock levels and expiry dates.',
+    challenge:
+      'The pharmacy was experiencing frequent stock-outs, inventory mismanagement, and difficulties in tracking prescription sales. Manual inventory management led to financial losses and customer dissatisfaction.',
+    solution:
+      'We developed a real-time inventory tracking system with automated stock alerts, sales management, prescription tracking, and expiry date notifications. The system includes barcode scanning and automated reordering.',
+    technologies: [
+      'React Native',
+      'Node.js',
+      'MongoDB',
+      'Express.js',
+      'Barcode Scanner',
+      'Push Notifications',
+    ],
     results: [
       'Increased operational efficiency by 45%',
       'Reduced inventory losses by 70%',
@@ -56,10 +86,20 @@ const caseStudiesData = {
   },
   'hospital-management-system': {
     title: 'Hospital Management System',
-    overview: 'An end-to-end solution for comprehensive hospital operations including patient records management, doctor scheduling, billing automation, and integrated electronic health records (EHR).',
-    challenge: 'The hospital was struggling with paper-based patient records, which slowed down patient care, caused administrative errors, and made it difficult to maintain accurate medical histories and billing records.',
-    solution: 'We implemented a centralized Electronic Health Records (EHR) system with automated appointment scheduling, integrated billing, patient portal, and comprehensive medical record management with secure data access.',
-    technologies: ['React', 'Node.js', 'PostgreSQL', 'Express.js', 'HL7 FHIR', 'HIPAA Compliance'],
+    overview:
+      'An end-to-end solution for comprehensive hospital operations including patient records management, doctor scheduling, billing automation, and integrated electronic health records (EHR).',
+    challenge:
+      'The hospital was struggling with paper-based patient records, which slowed down patient care, caused administrative errors, and made it difficult to maintain accurate medical histories and billing records.',
+    solution:
+      'We implemented a centralized Electronic Health Records (EHR) system with automated appointment scheduling, integrated billing, patient portal, and comprehensive medical record management with secure data access.',
+    technologies: [
+      'React',
+      'Node.js',
+      'PostgreSQL',
+      'Express.js',
+      'HL7 FHIR',
+      'HIPAA Compliance',
+    ],
     results: [
       'Faster patient care delivery',
       'Reduced administrative errors by 80%',
@@ -73,9 +113,14 @@ const caseStudiesData = {
 };
 
 // Generate metadata for each case study
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const caseStudy = caseStudiesData[params.slug as keyof typeof caseStudiesData];
-  
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const caseStudy =
+    caseStudiesData[params.slug as keyof typeof caseStudiesData];
+
   if (!caseStudy) {
     return {
       title: 'Case Study Not Found | ZMS IT Hub',
@@ -104,15 +149,24 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function CaseStudyPage({ params }: { params: { slug: string } }) {
-  const caseStudy = caseStudiesData[params.slug as keyof typeof caseStudiesData];
+export default function CaseStudyPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const caseStudy =
+    caseStudiesData[params.slug as keyof typeof caseStudiesData];
 
   if (!caseStudy) {
     return (
       <Container>
         <div className="py-20 text-center">
-          <h1 className="mb-4 text-4xl font-bold text-gray-900">Case Study Not Found</h1>
-          <p className="mb-8 text-xl text-gray-600">The requested case study could not be found.</p>
+          <h1 className="mb-4 text-4xl font-bold text-gray-900">
+            Case Study Not Found
+          </h1>
+          <p className="mb-8 text-xl text-gray-600">
+            The requested case study could not be found.
+          </p>
           <Link
             href="/case-studies"
             className="inline-flex items-center rounded-lg bg-primary px-6 py-3 font-semibold text-white transition-colors duration-200 hover:bg-primary-dark"
@@ -248,7 +302,8 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
               Ready to Start Your Project?
             </h2>
             <p className="mb-8 text-xl text-gray-200">
-              Let's discuss how we can help transform your institution with innovative software solutions.
+              Let's discuss how we can help transform your institution with
+              innovative software solutions.
             </p>
             <Link
               href="/contact"

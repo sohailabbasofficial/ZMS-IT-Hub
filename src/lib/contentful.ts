@@ -8,20 +8,25 @@ import type {
 } from '@/types';
 
 // Check if Contentful environment variables are available
-const hasContentfulConfig = 
-  process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID && 
+const hasContentfulConfig =
+  process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID &&
   process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN;
 
-const client = hasContentfulConfig ? createClient({
-  space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID!,
-  accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN!,
-}) : null;
+const client = hasContentfulConfig
+  ? createClient({
+      space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID!,
+      accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN!,
+    })
+  : null;
 
-const previewClient = hasContentfulConfig && process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN ? createClient({
-  space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID!,
-  accessToken: process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN!,
-  host: 'preview.contentful.com',
-}) : null;
+const previewClient =
+  hasContentfulConfig && process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN
+    ? createClient({
+        space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID!,
+        accessToken: process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN!,
+        host: 'preview.contentful.com',
+      })
+    : null;
 
 export const getClient = (preview = false) => {
   if (!hasContentfulConfig) {
@@ -37,7 +42,7 @@ export async function getBlogPosts(
   preview = false
 ): Promise<BlogPost[]> {
   const client = getClient(preview);
-  
+
   if (!client) {
     // Return mock data when Contentful is not configured
     return [];
@@ -75,7 +80,7 @@ export async function getBlogPost(
   preview = false
 ): Promise<BlogPost | null> {
   const client = getClient(preview);
-  
+
   if (!client) {
     return null;
   }
@@ -116,7 +121,7 @@ export async function getCaseStudies(
   preview = false
 ): Promise<CaseStudy[]> {
   const client = getClient(preview);
-  
+
   if (!client) {
     return [];
   }
@@ -151,7 +156,7 @@ export async function getCaseStudy(
   preview = false
 ): Promise<CaseStudy | null> {
   const client = getClient(preview);
-  
+
   if (!client) {
     return null;
   }
@@ -187,7 +192,7 @@ export async function getCaseStudy(
 // Services
 export async function getServices(preview = false): Promise<Service[]> {
   const client = getClient(preview);
-  
+
   if (!client) {
     return [];
   }
@@ -221,7 +226,7 @@ export async function getService(
   preview = false
 ): Promise<Service | null> {
   const client = getClient(preview);
-  
+
   if (!client) {
     return null;
   }
@@ -257,7 +262,7 @@ export async function getService(
 // Team Members
 export async function getTeamMembers(preview = false): Promise<TeamMember[]> {
   const client = getClient(preview);
-  
+
   if (!client) {
     return [];
   }
@@ -287,7 +292,7 @@ export async function getTeamMembers(preview = false): Promise<TeamMember[]> {
 // Job Postings
 export async function getJobPostings(preview = false): Promise<JobPosting[]> {
   const client = getClient(preview);
-  
+
   if (!client) {
     return [];
   }
@@ -324,7 +329,7 @@ export async function getJobPosting(
   preview = false
 ): Promise<JobPosting | null> {
   const client = getClient(preview);
-  
+
   if (!client) {
     return null;
   }

@@ -14,20 +14,20 @@ const callOptions: CallOption[] = [
     id: 'project-manager',
     role: 'Project Manager',
     phone: '+1 555 111 2222',
-    icon: '👥'
+    icon: '👥',
   },
   {
     id: 'business-consultant',
     role: 'Business Consultant',
     phone: '+1 555 333 4444',
-    icon: '💼'
+    icon: '💼',
   },
   {
     id: 'customer-support',
     role: 'Customer Support',
     phone: '+1 555 777 8888',
-    icon: '🎧'
-  }
+    icon: '🎧',
+  },
 ];
 
 export default function CallButton() {
@@ -69,13 +69,13 @@ export default function CallButton() {
           break;
         case 'ArrowDown':
           event.preventDefault();
-          setFocusedIndex(prev => 
+          setFocusedIndex((prev) =>
             prev < callOptions.length - 1 ? prev + 1 : 0
           );
           break;
         case 'ArrowUp':
           event.preventDefault();
-          setFocusedIndex(prev => 
+          setFocusedIndex((prev) =>
             prev > 0 ? prev - 1 : callOptions.length - 1
           );
           break;
@@ -95,7 +95,7 @@ export default function CallButton() {
 
   const handleCallClick = (option: CallOption) => {
     const telUrl = `tel:${option.phone.replace(/\s/g, '')}`;
-    
+
     try {
       window.location.href = telUrl;
     } catch (error) {
@@ -104,7 +104,7 @@ export default function CallButton() {
       setShowToast(true);
       setTimeout(() => setShowToast(false), 3000);
     }
-    
+
     setIsOpen(false);
     setFocusedIndex(-1);
   };
@@ -129,7 +129,7 @@ export default function CallButton() {
               setIsOpen(!isOpen);
             }
           }}
-          className="group relative flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-500 text-white shadow-lg transition-all duration-300 hover:bg-blue-600 hover:shadow-xl hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-blue-300 animate-pulse"
+          className="group relative flex h-14 w-14 animate-pulse items-center justify-center rounded-2xl bg-blue-500 text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-blue-600 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-blue-300"
           aria-label="Open call contact options"
           aria-expanded={isOpen}
           aria-haspopup="menu"
@@ -166,7 +166,7 @@ export default function CallButton() {
                     className={`w-full rounded-lg p-3 text-left transition-colors duration-200 ${
                       focusedIndex === index
                         ? 'bg-blue-50 text-blue-700'
-                        : 'hover:bg-gray-50 text-gray-700'
+                        : 'text-gray-700 hover:bg-gray-50'
                     }`}
                     role="menuitem"
                     tabIndex={-1}
@@ -177,7 +177,9 @@ export default function CallButton() {
                       </span>
                       <div>
                         <div className="font-medium">{option.role}</div>
-                        <div className="text-sm text-gray-500">{option.phone}</div>
+                        <div className="text-sm text-gray-500">
+                          {option.phone}
+                        </div>
                       </div>
                     </div>
                   </button>

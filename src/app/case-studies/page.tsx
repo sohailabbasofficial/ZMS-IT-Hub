@@ -4,7 +4,8 @@ import CaseStudyCard from '@/components/ui/CaseStudyCard';
 
 export const metadata: Metadata = {
   title: 'Case Studies | Successful Software Development Projects | ZMS IT Hub',
-  description: 'Explore our successful software development projects including school management, college management, pharmacy management, and hospital management systems.',
+  description:
+    'Explore our successful software development projects including school management, college management, pharmacy management, and hospital management systems.',
   keywords: [
     'case studies',
     'software development projects',
@@ -22,28 +23,32 @@ const caseStudies = [
   {
     slug: 'school-management-system',
     title: 'School Management System',
-    description: 'Digital platform to manage students, teachers, fees, and attendance with centralized data management and online fee collection.',
+    description:
+      'Digital platform to manage students, teachers, fees, and attendance with centralized data management and online fee collection.',
     image: '/images/school.png',
     imageAlt: 'School Management System Dashboard',
   },
   {
     slug: 'college-management-system',
     title: 'College Management System',
-    description: 'Complete solution for courses, exams, and student management with automated exam results and streamlined processes.',
+    description:
+      'Complete solution for courses, exams, and student management with automated exam results and streamlined processes.',
     image: '/images/college.png',
     imageAlt: 'College Management System Interface',
   },
   {
     slug: 'pharmacy-management-system',
     title: 'Pharmacy Management System',
-    description: 'Digital stock & sales management for pharmacies with real-time inventory tracking and automated alerts.',
+    description:
+      'Digital stock & sales management for pharmacies with real-time inventory tracking and automated alerts.',
     image: '/images/pharmacy.png',
     imageAlt: 'Pharmacy Management System Dashboard',
   },
   {
     slug: 'hospital-management-system',
     title: 'Hospital Management System',
-    description: 'End-to-end solution for patient records, doctors, and billing with centralized EHR and appointment system.',
+    description:
+      'End-to-end solution for patient records, doctors, and billing with centralized EHR and appointment system.',
     image: '/images/hospital.png',
     imageAlt: 'Hospital Management System Interface',
   },
@@ -92,7 +97,8 @@ export default function CaseStudiesPage() {
               Ready to Start Your Project?
             </h2>
             <p className="mb-8 text-xl text-gray-600">
-              Let's discuss how we can help transform your institution with innovative software solutions.
+              Let's discuss how we can help transform your institution with
+              innovative software solutions.
             </p>
             <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
               <a

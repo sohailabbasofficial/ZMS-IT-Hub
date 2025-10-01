@@ -119,11 +119,11 @@ export default function AboutPage() {
               </h2>
               <div className="space-y-4 leading-relaxed text-gray-700">
                 <p>
-                  Founded on August 14, 2025, ZMS IT Hub began as a small team of
-                  passionate developers with a vision to bridge the gap between
-                  innovative ideas and practical software solutions. What
-                  started as a local software development company has grown into
-                  a trusted partner for businesses worldwide.
+                  Founded on August 14, 2025, ZMS IT Hub began as a small team
+                  of passionate developers with a vision to bridge the gap
+                  between innovative ideas and practical software solutions.
+                  What started as a local software development company has grown
+                  into a trusted partner for businesses worldwide.
                 </p>
                 <p>
                   Our journey has been marked by continuous learning,

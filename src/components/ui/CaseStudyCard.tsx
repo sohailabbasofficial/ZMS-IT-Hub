@@ -18,7 +18,7 @@ export default function CaseStudyCard({
   imageAlt,
 }: CaseStudyCardProps) {
   return (
-    <div className="group overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+    <div className="group overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
       {/* Project Image */}
       <div className="relative h-48 overflow-hidden">
         <Image
@@ -31,20 +31,21 @@ export default function CaseStudyCard({
 
       {/* Card Content */}
       <div className="p-6">
-        <h3 className="mb-3 text-xl font-bold text-gray-900 group-hover:text-primary transition-colors duration-200">
+        <h3 className="mb-3 text-xl font-bold text-gray-900 transition-colors duration-200 group-hover:text-primary">
           {title}
         </h3>
-        <p className="mb-4 text-gray-600 leading-relaxed">
-          {description}
-        </p>
-        
+        <p className="mb-4 leading-relaxed text-gray-600">{description}</p>
+
         {/* View Case Study Button */}
         <Link
           href={`/case-studies/${slug}`}
           className="inline-flex items-center font-medium text-primary transition-colors duration-200 hover:text-primary-dark group-hover:translate-x-1"
         >
           View Case Study
-          <FiArrowRight className="ml-1 transition-transform duration-200 group-hover:translate-x-1" size={16} />
+          <FiArrowRight
+            className="ml-1 transition-transform duration-200 group-hover:translate-x-1"
+            size={16}
+          />
         </Link>
       </div>
     </div>
