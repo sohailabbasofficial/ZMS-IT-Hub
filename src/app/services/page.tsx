@@ -10,6 +10,7 @@ import {
   FiShield,
   FiUsers,
   FiLayers,
+  FiTarget,
 } from 'react-icons/fi';
 import Container from '@/components/ui/Container';
 import Button from '@/components/ui/Button';
@@ -40,6 +41,7 @@ export default function ServicesPage() {
     FiShield,
     FiUsers,
     FiCode,
+    FiTarget,
   ];
 
   const processSteps = [
@@ -182,7 +184,7 @@ export default function ServicesPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 md:grid-cols-4 lg:grid-cols-6">
+          <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8">
             {[
               'React',
               'Next.js',
@@ -204,10 +206,12 @@ export default function ServicesPage() {
               'GraphQL',
             ].map((tech, index) => (
               <div key={index} className="group text-center">
-                <div className="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-lg bg-gray-100 transition-all duration-300 group-hover:bg-primary group-hover:text-white">
-                  <span className="text-sm font-semibold">{tech}</span>
+                <div className="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br from-primary/10 to-primary/20 transition-all duration-300 group-hover:from-primary group-hover:to-primary-dark group-hover:scale-110 group-hover:shadow-lg">
+                  <span className="text-xs font-bold text-primary transition-colors duration-300 group-hover:text-white">
+                    {tech}
+                  </span>
                 </div>
-                <span className="text-sm font-medium text-gray-600">
+                <span className="text-sm font-medium text-gray-600 transition-colors duration-300 group-hover:text-primary">
                   {tech}
                 </span>
               </div>

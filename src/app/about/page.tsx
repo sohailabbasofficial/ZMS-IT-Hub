@@ -7,6 +7,7 @@ import {
   FiHeart,
   FiTrendingUp,
   FiGlobe,
+  FiArrowRight,
 } from 'react-icons/fi';
 import Container from '@/components/ui/Container';
 import Button from '@/components/ui/Button';
@@ -84,10 +85,10 @@ export default function AboutPage() {
   ];
 
   const stats = [
-    { number: '50+', label: 'Projects Completed' },
-    { number: '25+', label: 'Happy Clients' },
-    { number: '5+', label: 'Years Experience' },
-    { number: '15+', label: 'Team Members' },
+    { number: '3', label: 'Successful Projects' },
+    { number: '10', label: 'Team Members' },
+    { number: '3', label: 'Years Experience' },
+    { number: '2025', label: 'Founded' },
   ];
 
   return (
@@ -118,7 +119,7 @@ export default function AboutPage() {
               </h2>
               <div className="space-y-4 leading-relaxed text-gray-700">
                 <p>
-                  Founded in 2019, ZMS IT Hub began as a small team of
+                  Founded on August 14, 2025, ZMS IT Hub began as a small team of
                   passionate developers with a vision to bridge the gap between
                   innovative ideas and practical software solutions. What
                   started as a local software development company has grown into
@@ -126,7 +127,7 @@ export default function AboutPage() {
                 </p>
                 <p>
                   Our journey has been marked by continuous learning,
-                  adaptation, and growth. We've successfully delivered over 50
+                  adaptation, and growth. We've successfully delivered 3
                   projects across various industries, from startups to
                   established enterprises, helping them achieve their digital
                   transformation goals.
@@ -141,7 +142,7 @@ export default function AboutPage() {
             </div>
             <div className="relative">
               <Image
-                src="/images/company-story.jpg"
+                src="/images/ourstory.png"
                 alt="ZMS IT Hub Company Story"
                 width={600}
                 height={400}
@@ -322,19 +323,19 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {[
               {
-                title: 'Best Software Development Company 2023',
+                title: 'Best Software Development Company 2025',
                 organization: 'Pakistan Tech Awards',
-                year: '2023',
+                year: '2025',
               },
               {
                 title: 'Excellence in Mobile App Development',
                 organization: 'Digital Innovation Awards',
-                year: '2022',
+                year: '2025',
               },
               {
                 title: 'Top Rated Development Partner',
                 organization: 'Clutch.co',
-                year: '2023',
+                year: '2025',
               },
             ].map((award, index) => (
               <div key={index} className="card text-center">
@@ -367,8 +368,9 @@ export default function AboutPage() {
               <Button variant="secondary" size="lg" href="/contact">
                 Start Your Project
               </Button>
-              <Button variant="outline" size="lg" href="/careers">
+              <Button variant="primary" size="lg" href="/careers">
                 Join Our Team
+                <FiArrowRight className="ml-2" />
               </Button>
             </div>
           </div>

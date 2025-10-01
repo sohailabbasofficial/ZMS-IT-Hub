@@ -16,9 +16,12 @@ export function GoogleAnalytics() {
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.gtag) {
+    if (typeof window !== 'undefined' && window.gtag && process.env.NEXT_PUBLIC_GA_ID) {
+      const searchString = searchParams.toString();
+      const pagePath = searchString ? `${pathname}?${searchString}` : pathname;
+      
       window.gtag('config', process.env.NEXT_PUBLIC_GA_ID, {
-        page_path: pathname + searchParams.toString(),
+        page_path: pagePath,
       });
     }
   }, [pathname, searchParams]);

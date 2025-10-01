@@ -35,8 +35,8 @@ export function StructuredData({ type, data }: StructuredDataProps) {
             siteConfig.links.facebook,
             siteConfig.links.instagram,
           ],
-          foundingDate: '2019',
-          numberOfEmployees: '15',
+          foundingDate: '2025',
+          numberOfEmployees: '10',
           industry: 'Software Development',
         };
 

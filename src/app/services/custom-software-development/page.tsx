@@ -251,7 +251,7 @@ export default function CustomSoftwareDevelopmentPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {technologies.map((category, index) => (
               <div key={index} className="text-center">
                 <h3 className="mb-6 text-xl font-semibold text-secondary">
@@ -261,9 +261,11 @@ export default function CustomSoftwareDevelopmentPage() {
                   {category.techs.map((tech, techIndex) => (
                     <div
                       key={techIndex}
-                      className="rounded-lg bg-white px-4 py-2 shadow-sm"
+                      className="group rounded-xl bg-white px-4 py-3 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                     >
-                      <span className="font-medium text-gray-700">{tech}</span>
+                      <span className="font-medium text-gray-700 transition-colors duration-300 group-hover:text-primary">
+                        {tech}
+                      </span>
                     </div>
                   ))}
                 </div>

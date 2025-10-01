@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FiMenu, FiX, FiChevronDown } from 'react-icons/fi';
 import Logo from '@/components/ui/Logo';
 import { DarkModeToggle } from '@/components/animations/InteractiveElements';
@@ -35,10 +35,12 @@ const navigation: NavigationItem[] = [
       { label: 'QA & Testing', href: '/services/qa-testing' },
       { label: 'UI/UX Design', href: '/services/ui-ux-design' },
       { label: 'Product Strategy', href: '/services/product-strategy' },
+      { label: 'Google Ads Marketing', href: '/services/google-ads-marketing' },
     ],
   },
   { label: 'Case Studies', href: '/case-studies' },
   { label: 'Blog', href: '/blog' },
+  { label: 'Our Team', href: '/team' },
   { label: 'Careers', href: '/careers' },
   { label: 'Contact', href: '/contact' },
 ];
@@ -46,9 +48,34 @@ const navigation: NavigationItem[] = [
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [hoverTimeout, setHoverTimeout] = useState<NodeJS.Timeout | null>(null);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
+
+  const handleMouseEnter = (itemLabel: string) => {
+    if (hoverTimeout) {
+      clearTimeout(hoverTimeout);
+      setHoverTimeout(null);
+    }
+    setActiveDropdown(itemLabel);
+  };
+
+  const handleMouseLeave = () => {
+    const timeout = setTimeout(() => {
+      setActiveDropdown(null);
+    }, 150);
+    setHoverTimeout(timeout);
+  };
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (hoverTimeout) {
+        clearTimeout(hoverTimeout);
+      }
+    };
+  }, [hoverTimeout]);
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-lg">
@@ -60,14 +87,19 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden items-center space-x-8 md:flex">
             {navigation.map((item) => (
-              <div key={item.label} className="group relative">
+              <div 
+                key={item.label} 
+                className="group relative"
+                onMouseEnter={() => item.children && handleMouseEnter(item.label)}
+                onMouseLeave={handleMouseLeave}
+              >
                 <Link
                   href={item.href}
                   className="font-medium text-gray-700 transition-colors duration-200 hover:text-primary"
-                  onMouseEnter={() =>
-                    item.children && setActiveDropdown(item.label)
-                  }
-                  onMouseLeave={() => setActiveDropdown(null)}
+                  onClick={() => {
+                    // Close dropdown when clicking the main link
+                    setActiveDropdown(null);
+                  }}
                 >
                   {item.label}
                   {item.children && (
@@ -77,12 +109,17 @@ export default function Header() {
 
                 {/* Dropdown Menu */}
                 {item.children && activeDropdown === item.label && (
-                  <div className="absolute left-0 top-full z-50 mt-2 w-64 rounded-lg border border-gray-200 bg-white py-2 shadow-lg">
+                  <div 
+                    className="absolute left-0 top-full z-50 w-64 rounded-lg border border-gray-200 bg-white py-2 shadow-lg"
+                    onMouseEnter={() => handleMouseEnter(item.label)}
+                    onMouseLeave={handleMouseLeave}
+                  >
                     {item.children.map((child) => (
                       <Link
                         key={child.href}
                         href={child.href}
                         className="block px-4 py-2 text-gray-700 transition-colors duration-200 hover:bg-gray-50 hover:text-primary"
+                        onClick={() => setActiveDropdown(null)}
                       >
                         {child.label}
                       </Link>

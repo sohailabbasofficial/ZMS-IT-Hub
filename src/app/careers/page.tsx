@@ -7,6 +7,7 @@ import {
   FiUsers,
   FiBriefcase,
   FiMail,
+  FiArrowRight,
 } from 'react-icons/fi';
 import Container from '@/components/ui/Container';
 import Button from '@/components/ui/Button';
@@ -53,7 +54,7 @@ export default function CareersPage() {
         max: 250000,
         currency: 'PKR',
       },
-      publishedAt: '2024-01-15',
+      publishedAt: '2025-01-15',
     },
     {
       title: 'UI/UX Designer',
@@ -82,7 +83,7 @@ export default function CareersPage() {
         max: 150000,
         currency: 'PKR',
       },
-      publishedAt: '2024-01-10',
+      publishedAt: '2025-01-10',
     },
     {
       title: 'DevOps Engineer',
@@ -111,7 +112,7 @@ export default function CareersPage() {
         max: 200000,
         currency: 'PKR',
       },
-      publishedAt: '2024-01-08',
+      publishedAt: '2025-01-08',
     },
   ];
 
@@ -420,8 +421,9 @@ export default function CareersPage() {
               <Button variant="secondary" size="lg" href="/contact">
                 Send Resume
               </Button>
-              <Button variant="outline" size="lg" href="/about">
+              <Button variant="primary" size="lg" href="/about">
                 Learn More About Us
+                <FiArrowRight className="ml-2" />
               </Button>
             </div>
           </div>

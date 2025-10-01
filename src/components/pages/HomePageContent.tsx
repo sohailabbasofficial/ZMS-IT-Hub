@@ -10,6 +10,8 @@ import {
   FiSmartphone,
   FiCloud,
   FiShield,
+  FiLayers,
+  FiTarget,
 } from 'react-icons/fi';
 import Container from '@/components/ui/Container';
 import Button from '@/components/ui/Button';
@@ -58,31 +60,36 @@ export default function HomePageContent() {
                   </Button>
                 </ScaleOnHover>
                 <ScaleOnHover>
-                  <Button variant="outline" size="lg" href="/case-studies">
+                  <Button variant="primary" size="lg" href="/case-studies">
                     View Our Work
+                    <FiArrowRight className="ml-2" />
                   </Button>
                 </ScaleOnHover>
               </div>
               <StaggerContainer className="flex items-center space-x-8 pt-8">
                 <StaggerItem className="text-center">
-                  <div className="text-3xl font-bold">
-                    <AnimatedCounter end={50} suffix="+" />
+                  <div className="text-4xl font-bold text-white drop-shadow-lg">
+                    <AnimatedCounter end={3} />
                   </div>
-                  <div className="text-sm text-gray-300">
-                    Projects Delivered
+                  <div className="text-sm font-medium text-gray-300">
+                    Successful Projects
                   </div>
                 </StaggerItem>
                 <StaggerItem className="text-center">
-                  <div className="text-3xl font-bold">
-                    <AnimatedCounter end={25} suffix="+" />
+                  <div className="text-4xl font-bold text-white drop-shadow-lg">
+                    <AnimatedCounter end={10} />
                   </div>
-                  <div className="text-sm text-gray-300">Happy Clients</div>
+                  <div className="text-sm font-medium text-gray-300">
+                    Team Members
+                  </div>
                 </StaggerItem>
                 <StaggerItem className="text-center">
-                  <div className="text-3xl font-bold">
-                    <AnimatedCounter end={5} suffix="+" />
+                  <div className="text-4xl font-bold text-white drop-shadow-lg">
+                    <AnimatedCounter end={3} suffix=" Years" />
                   </div>
-                  <div className="text-sm text-gray-300">Years Experience</div>
+                  <div className="text-sm font-medium text-gray-300">
+                    Experience
+                  </div>
                 </StaggerItem>
               </StaggerContainer>
             </FadeInUp>
@@ -128,7 +135,7 @@ export default function HomePageContent() {
           </FadeInUp>
 
           <StaggerContainer className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {siteConfig.services.slice(0, 6).map((service, index) => (
+            {siteConfig.services.slice(0, 8).map((service, index) => (
               <StaggerItem key={service.slug}>
                 <TiltOnHover className="card group">
                   <div className="mb-4 flex items-center">
@@ -184,6 +191,22 @@ export default function HomePageContent() {
                           />
                         </RotateOnHover>
                       )}
+                      {index === 6 && (
+                        <RotateOnHover>
+                          <FiLayers
+                            className="text-primary transition-colors duration-300 group-hover:text-white"
+                            size={24}
+                          />
+                        </RotateOnHover>
+                      )}
+                      {index === 7 && (
+                        <RotateOnHover>
+                          <FiTarget
+                            className="text-primary transition-colors duration-300 group-hover:text-white"
+                            size={24}
+                          />
+                        </RotateOnHover>
+                      )}
                     </BounceIn>
                     <h3 className="text-xl font-semibold text-secondary">
                       {service.title}
@@ -224,7 +247,7 @@ export default function HomePageContent() {
                     icon: <FiCheck className="text-primary" size={24} />,
                     title: 'Expert Team',
                     description:
-                      'Our developers have 5+ years of experience in cutting-edge technologies.',
+                      'Our developers have 3+ years of experience in cutting-edge technologies.',
                   },
                   {
                     icon: <FiCheck className="text-primary" size={24} />,
@@ -347,8 +370,9 @@ export default function HomePageContent() {
                   </Button>
                 </ScaleOnHover>
                 <ScaleOnHover>
-                  <Button variant="outline" size="lg" href="/about">
+                  <Button variant="primary" size="lg" href="/about">
                     Learn More About Us
+                    <FiArrowRight className="ml-2" />
                   </Button>
                 </ScaleOnHover>
               </div>

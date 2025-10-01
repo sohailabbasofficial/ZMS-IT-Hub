@@ -52,38 +52,35 @@ export default function ContactForm() {
     setErrorMessage('');
 
     try {
-      // For static export, we'll use a third-party service like Formspree or Netlify Forms
-      // For now, we'll simulate a successful submission
-
-      // You can replace this with your preferred form handling service:
+      // For static export, we'll simulate a successful submission
+      // In production, you can integrate with:
       // - Formspree: https://formspree.io/
       // - Netlify Forms: https://www.netlify.com/products/forms/
       // - EmailJS: https://www.emailjs.com/
+      // - Custom API endpoint
 
-      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+      // Simulate API call delay
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      // For demo purposes, we'll always show success
+      // In production, replace this with actual form submission
+      setSubmitStatus('success');
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        company: '',
+        service: '',
+        budget: '',
+        timeline: '',
+        message: '',
       });
 
-      if (response.ok) {
-        setSubmitStatus('success');
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          company: '',
-          service: '',
-          budget: '',
-          timeline: '',
-          message: '',
-        });
-      } else {
-        throw new Error('Failed to submit form');
-      }
+      // Log form data for development (remove in production)
+      console.log('Form submitted:', formData);
+      
     } catch (error) {
+      console.error('Form submission error:', error);
       setSubmitStatus('error');
       setErrorMessage(
         'Failed to send message. Please try again or contact us directly.'

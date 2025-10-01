@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Contact Button - HTML Fallback</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <!-- Demo Header -->
+    <header class="bg-white shadow-sm p-4">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold text-gray-800">Business Website</h1>
+            <!-- Co-Founder Social Icons -->
+            <div class="flex gap-3">
+                <a href="https://linkedin.com/in/placeholder" target="_blank" rel="noopener noreferrer" 
+                   class="flex items-center justify-center h-10 w-10 rounded-full bg-gray-100 text-gray-600 transition-all duration-200 hover:bg-blue-600 hover:text-white focus:outline-none focus:ring-4 focus:ring-blue-300"
+                   aria-label="Visit LinkedIn profile">
+                    <svg class="transition-transform duration-200 hover:scale-110" fill="currentColor" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                </a>
+                <a href="mailto:ceo@example.com" 
+                   class="flex items-center justify-center h-10 w-10 rounded-full bg-gray-100 text-gray-600 transition-all duration-200 hover:bg-green-600 hover:text-white focus:outline-none focus:ring-4 focus:ring-green-300"
+                   aria-label="Send email to ceo@example.com">
+                    <svg class="transition-transform duration-200 hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Demo Content -->
+    <main class="max-w-4xl mx-auto p-8">
+        <h2 class="text-3xl font-bold text-gray-800 mb-6">WhatsApp Contact Button Demo</h2>
+        <p class="text-gray-600 mb-8">This is a standalone HTML version of the WhatsApp contact button and social icons. Click the WhatsApp button in the bottom-right corner to see the contact options.</p>
+        
+        <div class="bg-white rounded-lg p-6 shadow-sm">
+            <h3 class="text-xl font-semibold mb-4">Features:</h3>
+            <ul class="list-disc list-inside space-y-2 text-gray-600">
+                <li>Fixed WhatsApp button with contact options</li>
+                <li>LinkedIn and Email social icons</li>
+                <li>Mobile-responsive design</li>
+                <li>Accessibility features</li>
+                <li>Keyboard navigation support</li>
+            </ul>
+        </div>
+    </main>
+
+    <!-- WhatsApp Contact Button -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <button id="whatsapp-btn" 
+                class="group relative flex h-14 w-14 items-center justify-center rounded-2xl bg-green-500 text-white shadow-lg transition-all duration-300 hover:bg-green-600 hover:shadow-xl hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-green-300 animate-pulse"
+                aria-label="Open WhatsApp contact options"
+                aria-expanded="false"
+                aria-haspopup="menu">
+            <!-- WhatsApp Icon -->
+            <svg class="h-8 w-8 transition-transform duration-300 group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+            </svg>
+        </button>
+
+        <!-- Contact Options Menu -->
+        <div id="contact-menu" class="absolute bottom-16 right-0 w-64 rounded-xl bg-white p-4 shadow-2xl ring-1 ring-black ring-opacity-5 hidden" role="menu" aria-label="WhatsApp contact options">
+            <div class="space-y-2">
+                <button class="contact-option w-full rounded-lg p-3 text-left transition-colors duration-200 hover:bg-gray-50 text-gray-700" 
+                        data-role="Project Manager" data-phone="+1 555 111 2222" data-icon="👥">
+                    <div class="flex items-center space-x-3">
+                        <span class="text-lg" aria-hidden="true">👥</span>
+                        <div>
+                            <div class="font-medium">Project Manager</div>
+                            <div class="text-sm text-gray-500">+1 555 111 2222</div>
+                        </div>
+                    </div>
+                </button>
+                <button class="contact-option w-full rounded-lg p-3 text-left transition-colors duration-200 hover:bg-gray-50 text-gray-700" 
+                        data-role="Business Consultant" data-phone="+1 555 333 4444" data-icon="💼">
+                    <div class="flex items-center space-x-3">
+                        <span class="text-lg" aria-hidden="true">💼</span>
+                        <div>
+                            <div class="font-medium">Business Consultant</div>
+                            <div class="text-sm text-gray-500">+1 555 333 4444</div>
+                        </div>
+                    </div>
+                </button>
+                <button class="contact-option w-full rounded-lg p-3 text-left transition-colors duration-200 hover:bg-gray-50 text-gray-700" 
+                        data-role="Customer Support" data-phone="+1 555 777 8888" data-icon="🎧">
+                    <div class="flex items-center space-x-3">
+                        <span class="text-lg" aria-hidden="true">🎧</span>
+                        <div>
+                            <div class="font-medium">Customer Support</div>
+                            <div class="text-sm text-gray-500">+1 555 777 8888</div>
+                        </div>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-24 right-6 z-50 rounded-lg bg-gray-800 px-4 py-2 text-white shadow-lg hidden">
+        <div class="flex items-center space-x-2">
+            <span id="toast-message"></span>
+            <button id="copy-btn" class="text-green-400 hover:text-green-300" aria-label="Copy phone number">📋</button>
+        </div>
+    </div>
+
+    <script>
+        // WhatsApp Contact Button Functionality
+        const whatsappBtn = document.getElementById('whatsapp-btn');
+        const contactMenu = document.getElementById('contact-menu');
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toast-message');
+        const copyBtn = document.getElementById('copy-btn');
+        const contactOptions = document.querySelectorAll('.contact-option');
+        
+        let isOpen = false;
+        let focusedIndex = -1;
+
+        // Toggle menu
+        whatsappBtn.addEventListener('click', () => {
+            isOpen = !isOpen;
+            contactMenu.classList.toggle('hidden', !isOpen);
+            whatsappBtn.setAttribute('aria-expanded', isOpen);
+            focusedIndex = -1;
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!whatsappBtn.contains(e.target) && !contactMenu.contains(e.target)) {
+                isOpen = false;
+                contactMenu.classList.add('hidden');
+                whatsappBtn.setAttribute('aria-expanded', false);
+                focusedIndex = -1;
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!isOpen) return;
+
+            switch (e.key) {
+                case 'Escape':
+                    isOpen = false;
+                    contactMenu.classList.add('hidden');
+                    whatsappBtn.setAttribute('aria-expanded', false);
+                    whatsappBtn.focus();
+                    focusedIndex = -1;
+                    break;
+                case 'ArrowDown':
+                    e.preventDefault();
+                    focusedIndex = focusedIndex < contactOptions.length - 1 ? focusedIndex + 1 : 0;
+                    updateFocus();
+                    break;
+                case 'ArrowUp':
+                    e.preventDefault();
+                    focusedIndex = focusedIndex > 0 ? focusedIndex - 1 : contactOptions.length - 1;
+                    updateFocus();
+                    break;
+                case 'Enter':
+                case ' ':
+                    if (focusedIndex >= 0) {
+                        e.preventDefault();
+                        contactOptions[focusedIndex].click();
+                    }
+                    break;
+            }
+        });
+
+        function updateFocus() {
+            contactOptions.forEach((option, index) => {
+                if (index === focusedIndex) {
+                    option.classList.add('bg-green-50', 'text-green-700');
+                    option.classList.remove('hover:bg-gray-50', 'text-gray-700');
+                } else {
+                    option.classList.remove('bg-green-50', 'text-green-700');
+                    option.classList.add('hover:bg-gray-50', 'text-gray-700');
+                }
+            });
+        }
+
+        // Handle contact option clicks
+        contactOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                const role = option.dataset.role;
+                const phone = option.dataset.phone;
+                const message = `Hello — I'm contacting ${role} about your services.`;
+                const encodedMessage = encodeURIComponent(message);
+                
+                const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+                const whatsappUrl = isMobile 
+                    ? `whatsapp://send?phone=${phone.replace(/\s/g, '')}&text=${encodedMessage}`
+                    : `https://wa.me/${phone.replace(/\s/g, '')}?text=${encodedMessage}`;
+
+                try {
+                    window.open(whatsappUrl, '_blank');
+                } catch (error) {
+                    showToast(phone);
+                }
+                
+                isOpen = false;
+                contactMenu.classList.add('hidden');
+                whatsappBtn.setAttribute('aria-expanded', false);
+                focusedIndex = -1;
+            });
+        });
+
+        // Toast functionality
+        function showToast(message) {
+            toastMessage.textContent = message;
+            toast.classList.remove('hidden');
+            setTimeout(() => toast.classList.add('hidden'), 3000);
+        }
+
+        copyBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(toastMessage.textContent);
+            toastMessage.textContent = 'Phone number copied!';
+            setTimeout(() => toast.classList.add('hidden'), 2000);
+        });
+    </script>
+</body>
+</html>
