@@ -5,7 +5,7 @@ export const teamMemberSchema = z.object({
   name: z.string().min(1, 'Name is required'),
   position: z.string().min(1, 'Position is required'),
   bio: z.string().optional(),
-  imageUrl: z.string().url().optional().or(z.literal('')),
+  imageUrl: z.string().optional(),
   linkedinUrl: z.string().url().optional().or(z.literal('')),
   email: z.string().email().optional().or(z.literal('')),
   phone: z.string().optional(),

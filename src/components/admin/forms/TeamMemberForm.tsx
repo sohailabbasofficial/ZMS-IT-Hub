@@ -7,6 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { teamMemberSchema, TeamMemberInput } from '@/lib/validations';
 import { FiSave, FiArrowLeft } from 'react-icons/fi';
 import Link from 'next/link';
+import ImageUpload from '@/components/admin/ui/ImageUpload';
 
 interface TeamMemberFormProps {
   initialData?: Partial<TeamMemberInput>;
@@ -20,6 +21,8 @@ export default function TeamMemberForm({
   memberId,
 }: TeamMemberFormProps) {
   const [isLoading, setIsLoading] = useState(false);
+  const [imageUrl, setImageUrl] = useState(initialData?.imageUrl || '');
+  const [uploadError, setUploadError] = useState<string | null>(null);
   const router = useRouter();
 
   const {
@@ -44,24 +47,44 @@ export default function TeamMemberForm({
 
   const onSubmit = async (data: TeamMemberInput) => {
     setIsLoading(true);
+    setUploadError(null);
 
     try {
       const url = isEditing ? `/api/admin/team/${memberId}` : '/api/admin/team';
       const method = isEditing ? 'PUT' : 'POST';
+
+      // Include the uploaded image URL in the data
+      const formData = {
+        ...data,
+        imageUrl: imageUrl,
+      };
+
+      console.log('Form submission data:', formData);
+      console.log('Submitting to URL:', url);
 
       const response = await fetch(url, {
         method,
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(formData),
+        credentials: 'include', // Include cookies for authentication
       });
+
+      console.log('Response status:', response.status);
+      console.log('Response ok:', response.ok);
 
       if (response.ok) {
         router.push('/admin/team');
       } else {
         const error = await response.json();
-        alert(error.error || 'Failed to save team member');
+        console.error('API Error:', error);
+        
+        if (error.details) {
+          alert(`Validation Error: ${error.details}`);
+        } else {
+          alert(error.error || 'Failed to save team member');
+        }
       }
     } catch (error) {
       console.error('Error saving team member:', error);
@@ -176,24 +199,19 @@ export default function TeamMemberForm({
               )}
             </div>
 
-            {/* Image URL */}
-            <div>
-              <label
-                htmlFor="imageUrl"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Image URL
+            {/* Image Upload */}
+            <div className="sm:col-span-2">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Profile Image
               </label>
-              <input
-                {...register('imageUrl')}
-                type="url"
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
-                placeholder="Enter image URL"
+              <ImageUpload
+                value={imageUrl}
+                onChange={setImageUrl}
+                onError={setUploadError}
+                disabled={isLoading}
               />
-              {errors.imageUrl && (
-                <p className="mt-1 text-sm text-red-600">
-                  {errors.imageUrl.message}
-                </p>
+              {uploadError && (
+                <p className="mt-2 text-sm text-red-600">{uploadError}</p>
               )}
             </div>
 

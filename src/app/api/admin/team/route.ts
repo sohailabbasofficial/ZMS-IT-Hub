@@ -64,15 +64,30 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
+    console.log('Team member creation request:', body);
+    
     const validatedData = teamMemberSchema.parse(body);
+    console.log('Validated data:', validatedData);
 
     const teamMember = await prisma.teamMember.create({
       data: validatedData,
     });
 
+    console.log('Team member created successfully:', teamMember.id);
     return NextResponse.json(teamMember, { status: 201 });
   } catch (error) {
     console.error('Error creating team member:', error);
+
+    if (error instanceof Error && error.name === 'ZodError') {
+      return NextResponse.json(
+        { 
+          error: 'Validation error',
+          details: error.message 
+        },
+        { status: 400 }
+      );
+    }
+
     return NextResponse.json(
       { error: 'Failed to create team member' },
       { status: 500 }

@@ -17,31 +17,13 @@ export const authOptions: NextAuthOptions = {
             return null;
           }
 
-          // First try to authenticate with environment variables (for development)
-          const adminEmail = process.env.ADMIN_EMAIL;
-          const adminPassword = process.env.ADMIN_PASSWORD;
-
-          if (
-            adminEmail &&
-            adminPassword &&
-            credentials.email === adminEmail &&
-            credentials.password === adminPassword
-          ) {
-            return {
-              id: 'admin-env',
-              email: adminEmail,
-              name: 'Admin User',
-              role: 'admin',
-              image: null,
-            };
-          }
-
-          // Then try database authentication
+          // Only use database authentication for security
           const user = await prisma.user.findUnique({
             where: { email: credentials.email },
           });
 
           if (!user || !user.isActive || !user.password) {
+            console.log('🔐 Auth: User not found or inactive');
             return null;
           }
 
@@ -51,9 +33,11 @@ export const authOptions: NextAuthOptions = {
           );
 
           if (!isPasswordValid) {
+            console.log('🔐 Auth: Invalid password');
             return null;
           }
 
+          console.log('🔐 Auth: Successful login for', user.email);
           return {
             id: user.id,
             email: user.email,
@@ -70,7 +54,8 @@ export const authOptions: NextAuthOptions = {
   ],
   session: {
     strategy: 'jwt',
-    maxAge: 24 * 60 * 60, // 24 hours
+    maxAge: 8 * 60 * 60, // 8 hours (reduced from 24)
+    updateAge: 2 * 60 * 60, // Update session every 2 hours
   },
   callbacks: {
     async jwt({ token, user }) {
