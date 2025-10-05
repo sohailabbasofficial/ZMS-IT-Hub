@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef } from 'react';
+import Image from 'next/image';
 import { FiX, FiImage } from 'react-icons/fi';
 
 interface ImageUploadProps {
@@ -110,11 +111,7 @@ export default function ImageUpload({
       {preview ? (
         <div className="relative">
           <div className="relative h-48 w-full overflow-hidden rounded-lg bg-gray-100">
-            <img
-              src={preview}
-              alt="Preview"
-              className="h-full w-full object-cover"
-            />
+            <Image src={preview} alt="Preview" fill className="object-cover" />
             {!disabled && (
               <button
                 type="button"

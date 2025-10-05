@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import Image from 'next/image';
 import {
   FiArrowRight,
   FiCheck,
@@ -14,7 +13,6 @@ import {
 import Container from '@/components/ui/Container';
 import Button from '@/components/ui/Button';
 import Logo from '@/components/ui/Logo';
-import { siteConfig } from '@/lib/config';
 
 export const metadata: Metadata = {
   title:

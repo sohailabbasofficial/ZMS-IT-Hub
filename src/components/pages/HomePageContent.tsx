@@ -55,7 +55,6 @@ export default function HomePageContent() {
     teamMembers: 10,
     yearsExperience: 3,
   });
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -83,8 +82,6 @@ export default function HomePageContent() {
             id: `static-${index}`,
           }))
         );
-      } finally {
-        setLoading(false);
       }
     };
 

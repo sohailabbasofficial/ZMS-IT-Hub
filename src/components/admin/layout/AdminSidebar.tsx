@@ -95,7 +95,18 @@ export default function AdminSidebar() {
       {/* Navigation */}
       <nav className="flex-1 space-y-1 p-4">
         {navigation.map((item) => {
-          if (!hasPermission(userRole, item.permission as any)) {
+          if (
+            !hasPermission(
+              userRole,
+              item.permission as
+                | 'VIEW_DASHBOARD'
+                | 'VIEW_CONTENT'
+                | 'MANAGE_USERS'
+                | 'UPLOAD_FILES'
+                | 'VIEW_USERS'
+                | 'MANAGE_SETTINGS'
+            )
+          ) {
             return null;
           }
 

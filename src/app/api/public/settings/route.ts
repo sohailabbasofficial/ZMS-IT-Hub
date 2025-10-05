@@ -12,10 +12,11 @@ export async function GET() {
     });
 
     // Convert settings array to object
-    const settingsObject: Record<string, any> = {};
+    const settingsObject: Record<string, string | number | boolean | object> =
+      {};
     settings.forEach((setting) => {
       const key = setting.key.replace('general_', '');
-      let value: any = setting.value;
+      let value: string | number | boolean | object = setting.value || '';
 
       // Parse value based on type
       if (setting.type === 'boolean') {

@@ -27,7 +27,7 @@ export interface ContentfulEntry {
     createdAt: string;
     updatedAt: string;
   };
-  fields: Record<string, any>;
+  fields: Record<string, string | number | boolean | object>;
 }
 
 // Blog Post Types

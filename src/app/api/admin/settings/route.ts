@@ -20,7 +20,10 @@ export async function GET() {
     });
 
     // Group settings by category (prefix before first underscore)
-    const groupedSettings: Record<string, Record<string, any>> = {};
+    const groupedSettings: Record<
+      string,
+      Record<string, string | number | boolean | object>
+    > = {};
 
     settings.forEach((setting) => {
       const [category, ...keyParts] = setting.key.split('_');
@@ -30,7 +33,7 @@ export async function GET() {
         groupedSettings[category] = {};
       }
 
-      let value: any = setting.value;
+      let value: string | number | boolean | object = setting.value || '';
 
       // Parse value based on type
       if (setting.type === 'boolean') {
@@ -76,30 +79,30 @@ export async function PUT(request: NextRequest) {
     }> = [];
 
     Object.entries(body).forEach(([category, categorySettings]) => {
-      Object.entries(categorySettings as Record<string, any>).forEach(
-        ([key, value]) => {
-          const fullKey = `${category}_${key}`;
-          let stringValue = String(value);
-          let type = 'string';
+      Object.entries(
+        categorySettings as Record<string, string | number | boolean | object>
+      ).forEach(([key, value]) => {
+        const fullKey = `${category}_${key}`;
+        let stringValue = String(value);
+        let type = 'string';
 
-          if (typeof value === 'boolean') {
-            type = 'boolean';
-            stringValue = String(value);
-          } else if (typeof value === 'number') {
-            type = 'number';
-            stringValue = String(value);
-          } else if (typeof value === 'object') {
-            type = 'json';
-            stringValue = JSON.stringify(value);
-          }
-
-          settingsToUpdate.push({
-            key: fullKey,
-            value: stringValue,
-            type,
-          });
+        if (typeof value === 'boolean') {
+          type = 'boolean';
+          stringValue = String(value);
+        } else if (typeof value === 'number') {
+          type = 'number';
+          stringValue = String(value);
+        } else if (typeof value === 'object') {
+          type = 'json';
+          stringValue = JSON.stringify(value);
         }
-      );
+
+        settingsToUpdate.push({
+          key: fullKey,
+          value: stringValue,
+          type,
+        });
+      });
     });
 
     // Update or create settings

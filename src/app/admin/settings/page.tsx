@@ -171,7 +171,7 @@ export default function SettingsPage() {
   const updateSetting = (
     section: keyof SettingsData,
     field: string,
-    value: any
+    value: string | number | boolean
   ) => {
     setSettings((prev) => ({
       ...prev,

@@ -33,7 +33,14 @@ export async function GET(request: NextRequest) {
     const search = searchParams.get('search') || '';
     const status = searchParams.get('status') || '';
 
-    const where: any = {};
+    const where: {
+      OR?: Array<{
+        title?: { contains: string; mode: 'insensitive' };
+        excerpt?: { contains: string; mode: 'insensitive' };
+        content?: { contains: string; mode: 'insensitive' };
+      }>;
+      status?: string;
+    } = {};
 
     if (search) {
       where.OR = [

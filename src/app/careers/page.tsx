@@ -1,12 +1,11 @@
 import { Metadata } from 'next';
-import Link from 'next/link';
+import Image from 'next/image';
 import {
   FiMapPin,
   FiClock,
   FiDollarSign,
   FiUsers,
   FiBriefcase,
-  FiMail,
   FiArrowRight,
 } from 'react-icons/fi';
 import Container from '@/components/ui/Container';
@@ -395,9 +394,11 @@ export default function CareersPage() {
               </div>
             </div>
             <div className="relative">
-              <img
+              <Image
                 src="/images/team-culture.jpg"
                 alt="ZMS IT Hub Team Culture"
+                width={600}
+                height={400}
                 className="w-full rounded-2xl shadow-lg"
               />
             </div>

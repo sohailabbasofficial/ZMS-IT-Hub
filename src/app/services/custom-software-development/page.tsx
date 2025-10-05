@@ -1,15 +1,12 @@
 import { Metadata } from 'next';
-import Link from 'next/link';
 import Image from 'next/image';
 import {
   FiCheck,
   FiArrowRight,
   FiCode,
-  FiSmartphone,
   FiShield,
   FiUsers,
   FiClock,
-  FiDollarSign,
 } from 'react-icons/fi';
 import Container from '@/components/ui/Container';
 import Button from '@/components/ui/Button';

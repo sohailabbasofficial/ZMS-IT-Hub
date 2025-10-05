@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
@@ -9,7 +12,15 @@ export async function GET(request: NextRequest) {
     const search = searchParams.get('search') || '';
     const featured = searchParams.get('featured') === 'true';
 
-    const where: any = {
+    const where: {
+      status: string;
+      OR?: Array<{
+        title?: { contains: string; mode: 'insensitive' };
+        excerpt?: { contains: string; mode: 'insensitive' };
+        content?: { contains: string; mode: 'insensitive' };
+      }>;
+      featured?: boolean;
+    } = {
       status: 'published',
     };
 

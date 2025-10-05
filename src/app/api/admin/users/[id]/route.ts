@@ -67,7 +67,14 @@ export async function PUT(
     const body = await request.json();
     const validatedData = userSchema.parse(body);
 
-    const updateData: any = {
+    const updateData: {
+      name: string;
+      email: string;
+      role: string;
+      image?: string;
+      isActive: boolean;
+      password?: string;
+    } = {
       name: validatedData.name,
       email: validatedData.email,
       role: validatedData.role,

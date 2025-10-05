@@ -30,7 +30,8 @@ export function hasPermission(
   userRole: string,
   permission: keyof typeof PERMISSIONS
 ): boolean {
-  return PERMISSIONS[permission].includes(userRole as any);
+  const allowedRoles = PERMISSIONS[permission];
+  return allowedRoles.includes(userRole as (typeof allowedRoles)[number]);
 }
 
 export type UserRole = (typeof ROLES)[keyof typeof ROLES];

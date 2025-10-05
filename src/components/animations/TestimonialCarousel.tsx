@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
@@ -90,9 +91,11 @@ export function TestimonialCarousel({
             <div className="flex items-center">
               <div className="mr-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
                 {testimonials[currentIndex].avatar ? (
-                  <img
+                  <Image
                     src={testimonials[currentIndex].avatar}
                     alt={testimonials[currentIndex].name}
+                    width={48}
+                    height={48}
                     className="h-12 w-12 rounded-full object-cover"
                   />
                 ) : (

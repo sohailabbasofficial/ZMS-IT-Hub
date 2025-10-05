@@ -1,8 +1,7 @@
 import { getServerSession } from 'next-auth';
 import { authOptions } from './auth';
-import { NextRequest } from 'next/server';
 
-export async function requireAdminAuth(request?: NextRequest) {
+export async function requireAdminAuth() {
   const session = await getServerSession(authOptions);
 
   if (!session) {
@@ -16,7 +15,7 @@ export async function requireAdminAuth(request?: NextRequest) {
   return session;
 }
 
-export async function requireAuth(request?: NextRequest) {
+export async function requireAuth() {
   const session = await getServerSession(authOptions);
 
   if (!session) {

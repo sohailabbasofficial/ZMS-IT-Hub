@@ -1,29 +1,7 @@
 import { notFound } from 'next/navigation';
 import { prisma } from '@/lib/prisma';
 import { Metadata } from 'next';
-
-interface BlogPost {
-  id: string;
-  title: string;
-  slug: string;
-  excerpt?: string;
-  content: string;
-  featuredImage?: string;
-  status: 'draft' | 'published' | 'archived';
-  featured: boolean;
-  seoTitle?: string;
-  seoDescription?: string;
-  tags?: string;
-  readingTime?: number;
-  createdAt: string;
-  updatedAt: string;
-  publishedAt?: string;
-  author: {
-    id: string;
-    name: string;
-    image?: string;
-  };
-}
+import Image from 'next/image';
 
 interface BlogPostPageProps {
   params: { slug: string };
@@ -131,9 +109,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       {/* Featured Image */}
       {blogPost.featuredImage && (
         <div className="mx-auto max-w-4xl px-4 py-8">
-          <img
+          <Image
             src={blogPost.featuredImage}
             alt={blogPost.title}
+            width={800}
+            height={256}
             className="h-64 w-full rounded-lg object-cover shadow-lg"
           />
         </div>
@@ -169,9 +149,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <div className="flex items-center space-x-4">
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-300">
                 {blogPost.author.image ? (
-                  <img
+                  <Image
                     src={blogPost.author.image}
                     alt={blogPost.author.name || 'Author'}
+                    width={48}
+                    height={48}
                     className="h-12 w-12 rounded-full object-cover"
                   />
                 ) : (

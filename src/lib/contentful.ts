@@ -5,6 +5,7 @@ import type {
   Service,
   TeamMember,
   JobPosting,
+  ContentfulAsset,
 } from '@/types';
 
 // Check if Contentful environment variables are available
@@ -55,20 +56,29 @@ export async function getBlogPosts(
       limit,
     });
 
-    return entries.items.map((entry: any) => ({
-      id: entry.sys.id,
-      title: entry.fields.title,
-      slug: entry.fields.slug,
-      excerpt: entry.fields.excerpt,
-      content: entry.fields.content,
-      featuredImage: entry.fields.featuredImage,
-      author: entry.fields.author,
-      publishedAt: entry.sys.createdAt,
-      updatedAt: entry.sys.updatedAt,
-      tags: entry.fields.tags || [],
-      category: entry.fields.category,
-      readingTime: entry.fields.readingTime || 5,
-    }));
+    return entries.items.map(
+      (entry: {
+        sys: { id: string; createdAt: string; updatedAt: string };
+        fields: Record<string, unknown>;
+      }) => ({
+        id: entry.sys.id,
+        title: (entry.fields.title as string) || '',
+        slug: (entry.fields.slug as string) || '',
+        excerpt: (entry.fields.excerpt as string) || '',
+        content: (entry.fields.content as string) || '',
+        featuredImage: entry.fields.featuredImage as ContentfulAsset,
+        author: entry.fields.author as {
+          name: string;
+          bio: string;
+          avatar?: ContentfulAsset;
+        },
+        publishedAt: entry.sys.createdAt,
+        updatedAt: entry.sys.updatedAt,
+        tags: (entry.fields.tags as string[]) || [],
+        category: (entry.fields.category as string) || '',
+        readingTime: (entry.fields.readingTime as number) || 5,
+      })
+    );
   } catch (error) {
     console.error('Error fetching blog posts:', error);
     return [];
@@ -94,20 +104,27 @@ export async function getBlogPost(
 
     if (entries.items.length === 0) return null;
 
-    const entry = entries.items[0] as any;
+    const entry = entries.items[0] as {
+      sys: { id: string; createdAt: string; updatedAt: string };
+      fields: Record<string, unknown>;
+    };
     return {
       id: entry.sys.id,
-      title: entry.fields.title,
-      slug: entry.fields.slug,
-      excerpt: entry.fields.excerpt,
-      content: entry.fields.content,
-      featuredImage: entry.fields.featuredImage,
-      author: entry.fields.author,
+      title: (entry.fields.title as string) || '',
+      slug: (entry.fields.slug as string) || '',
+      excerpt: (entry.fields.excerpt as string) || '',
+      content: (entry.fields.content as string) || '',
+      featuredImage: entry.fields.featuredImage as ContentfulAsset,
+      author: entry.fields.author as {
+        name: string;
+        bio: string;
+        avatar?: ContentfulAsset;
+      },
       publishedAt: entry.sys.createdAt,
       updatedAt: entry.sys.updatedAt,
-      tags: entry.fields.tags || [],
-      category: entry.fields.category,
-      readingTime: entry.fields.readingTime || 5,
+      tags: (entry.fields.tags as string[]) || [],
+      category: (entry.fields.category as string) || '',
+      readingTime: (entry.fields.readingTime as number) || 5,
     };
   } catch (error) {
     console.error('Error fetching blog post:', error);
@@ -133,18 +150,38 @@ export async function getCaseStudies(
       limit,
     });
 
-    return entries.items.map((entry: any) => ({
-      id: entry.sys.id,
-      title: entry.fields.title,
-      slug: entry.fields.slug,
-      excerpt: entry.fields.excerpt,
-      content: entry.fields.content,
-      featuredImage: entry.fields.featuredImage,
-      client: entry.fields.client,
-      project: entry.fields.project,
-      publishedAt: entry.sys.createdAt,
-      updatedAt: entry.sys.updatedAt,
-    }));
+    return entries.items.map(
+      (entry: {
+        sys: { id: string; createdAt: string; updatedAt: string };
+        fields: Record<string, unknown>;
+      }) => ({
+        id: entry.sys.id,
+        title: (entry.fields.title as string) || '',
+        slug: (entry.fields.slug as string) || '',
+        excerpt: (entry.fields.excerpt as string) || '',
+        content: (entry.fields.content as string) || '',
+        featuredImage: entry.fields.featuredImage as ContentfulAsset,
+        client: entry.fields.client as {
+          name: string;
+          logo?: ContentfulAsset;
+          industry: string;
+        },
+        project: entry.fields.project as {
+          duration: string;
+          teamSize: number;
+          technologies: string[];
+          challenges: string[];
+          solutions: string[];
+          results: {
+            metric: string;
+            value: string;
+            description: string;
+          }[];
+        },
+        publishedAt: entry.sys.createdAt,
+        updatedAt: entry.sys.updatedAt,
+      })
+    );
   } catch (error) {
     console.error('Error fetching case studies:', error);
     return [];
@@ -170,16 +207,34 @@ export async function getCaseStudy(
 
     if (entries.items.length === 0) return null;
 
-    const entry = entries.items[0] as any;
+    const entry = entries.items[0] as {
+      sys: { id: string; createdAt: string; updatedAt: string };
+      fields: Record<string, unknown>;
+    };
     return {
       id: entry.sys.id,
-      title: entry.fields.title,
-      slug: entry.fields.slug,
-      excerpt: entry.fields.excerpt,
-      content: entry.fields.content,
-      featuredImage: entry.fields.featuredImage,
-      client: entry.fields.client,
-      project: entry.fields.project,
+      title: (entry.fields.title as string) || '',
+      slug: (entry.fields.slug as string) || '',
+      excerpt: (entry.fields.excerpt as string) || '',
+      content: (entry.fields.content as string) || '',
+      featuredImage: entry.fields.featuredImage as ContentfulAsset,
+      client: entry.fields.client as {
+        name: string;
+        logo?: ContentfulAsset;
+        industry: string;
+      },
+      project: entry.fields.project as {
+        duration: string;
+        teamSize: number;
+        technologies: string[];
+        challenges: string[];
+        solutions: string[];
+        results: {
+          metric: string;
+          value: string;
+          description: string;
+        }[];
+      },
       publishedAt: entry.sys.createdAt,
       updatedAt: entry.sys.updatedAt,
     };
@@ -203,18 +258,32 @@ export async function getServices(preview = false): Promise<Service[]> {
       order: ['fields.order'],
     });
 
-    return entries.items.map((entry: any) => ({
-      id: entry.sys.id,
-      title: entry.fields.title,
-      slug: entry.fields.slug,
-      description: entry.fields.description,
-      content: entry.fields.content,
-      icon: entry.fields.icon,
-      features: entry.fields.features || [],
-      benefits: entry.fields.benefits || [],
-      process: entry.fields.process || [],
-      pricing: entry.fields.pricing,
-    }));
+    return entries.items.map(
+      (entry: {
+        sys: { id: string; createdAt: string; updatedAt: string };
+        fields: Record<string, unknown>;
+      }) => ({
+        id: entry.sys.id,
+        title: (entry.fields.title as string) || '',
+        slug: (entry.fields.slug as string) || '',
+        description: (entry.fields.description as string) || '',
+        content: (entry.fields.content as string) || '',
+        icon: (entry.fields.icon as string) || '',
+        features: (entry.fields.features as string[]) || [],
+        benefits: (entry.fields.benefits as string[]) || [],
+        process:
+          (entry.fields.process as {
+            step: number;
+            title: string;
+            description: string;
+          }[]) || [],
+        pricing: entry.fields.pricing as {
+          model: string;
+          startingFrom: string;
+          description: string;
+        },
+      })
+    );
   } catch (error) {
     console.error('Error fetching services:', error);
     return [];
@@ -240,18 +309,30 @@ export async function getService(
 
     if (entries.items.length === 0) return null;
 
-    const entry = entries.items[0] as any;
+    const entry = entries.items[0] as {
+      sys: { id: string; createdAt: string; updatedAt: string };
+      fields: Record<string, unknown>;
+    };
     return {
       id: entry.sys.id,
-      title: entry.fields.title,
-      slug: entry.fields.slug,
-      description: entry.fields.description,
-      content: entry.fields.content,
-      icon: entry.fields.icon,
-      features: entry.fields.features || [],
-      benefits: entry.fields.benefits || [],
-      process: entry.fields.process || [],
-      pricing: entry.fields.pricing,
+      title: (entry.fields.title as string) || '',
+      slug: (entry.fields.slug as string) || '',
+      description: (entry.fields.description as string) || '',
+      content: (entry.fields.content as string) || '',
+      icon: (entry.fields.icon as string) || '',
+      features: (entry.fields.features as string[]) || [],
+      benefits: (entry.fields.benefits as string[]) || [],
+      process:
+        (entry.fields.process as {
+          step: number;
+          title: string;
+          description: string;
+        }[]) || [],
+      pricing: entry.fields.pricing as {
+        model: string;
+        startingFrom: string;
+        description: string;
+      },
     };
   } catch (error) {
     console.error('Error fetching service:', error);
@@ -273,16 +354,21 @@ export async function getTeamMembers(preview = false): Promise<TeamMember[]> {
       order: ['fields.order'],
     });
 
-    return entries.items.map((entry: any) => ({
-      id: entry.sys.id,
-      name: entry.fields.name,
-      position: entry.fields.position,
-      bio: entry.fields.bio,
-      avatar: entry.fields.avatar,
-      social: entry.fields.social || {},
-      skills: entry.fields.skills || [],
-      experience: entry.fields.experience || 0,
-    }));
+    return entries.items.map(
+      (entry: {
+        sys: { id: string; createdAt: string; updatedAt: string };
+        fields: Record<string, unknown>;
+      }) => ({
+        id: entry.sys.id,
+        name: (entry.fields.name as string) || '',
+        position: (entry.fields.position as string) || '',
+        bio: (entry.fields.bio as string) || '',
+        avatar: entry.fields.avatar as ContentfulAsset,
+        social: (entry.fields.social as Record<string, unknown>) || {},
+        skills: (entry.fields.skills as string[]) || [],
+        experience: (entry.fields.experience as number) || 0,
+      })
+    );
   } catch (error) {
     console.error('Error fetching team members:', error);
     return [];
@@ -303,21 +389,37 @@ export async function getJobPostings(preview = false): Promise<JobPosting[]> {
       order: ['-sys.createdAt'],
     });
 
-    return entries.items.map((entry: any) => ({
-      id: entry.sys.id,
-      title: entry.fields.title,
-      slug: entry.fields.slug,
-      department: entry.fields.department,
-      location: entry.fields.location,
-      type: entry.fields.type,
-      experience: entry.fields.experience,
-      description: entry.fields.description,
-      requirements: entry.fields.requirements || [],
-      benefits: entry.fields.benefits || [],
-      salary: entry.fields.salary,
-      publishedAt: entry.sys.createdAt,
-      applicationDeadline: entry.fields.applicationDeadline,
-    }));
+    return entries.items.map(
+      (entry: {
+        sys: { id: string; createdAt: string; updatedAt: string };
+        fields: Record<string, unknown>;
+      }) => ({
+        id: entry.sys.id,
+        title: (entry.fields.title as string) || '',
+        slug: (entry.fields.slug as string) || '',
+        department: (entry.fields.department as string) || '',
+        location: (entry.fields.location as string) || '',
+        type:
+          (entry.fields.type as
+            | 'full-time'
+            | 'part-time'
+            | 'contract'
+            | 'internship') || 'full-time',
+        experience: (entry.fields.experience as string) || '',
+        description: (entry.fields.description as string) || '',
+        requirements: (entry.fields.requirements as string[]) || [],
+        benefits: (entry.fields.benefits as string[]) || [],
+        salary: entry.fields.salary as
+          | {
+              min: number;
+              max: number;
+              currency: string;
+            }
+          | undefined,
+        publishedAt: entry.sys.createdAt,
+        applicationDeadline: (entry.fields.applicationDeadline as string) || '',
+      })
+    );
   } catch (error) {
     console.error('Error fetching job postings:', error);
     return [];
@@ -343,21 +445,35 @@ export async function getJobPosting(
 
     if (entries.items.length === 0) return null;
 
-    const entry = entries.items[0] as any;
+    const entry = entries.items[0] as {
+      sys: { id: string; createdAt: string; updatedAt: string };
+      fields: Record<string, unknown>;
+    };
     return {
       id: entry.sys.id,
-      title: entry.fields.title,
-      slug: entry.fields.slug,
-      department: entry.fields.department,
-      location: entry.fields.location,
-      type: entry.fields.type,
-      experience: entry.fields.experience,
-      description: entry.fields.description,
-      requirements: entry.fields.requirements || [],
-      benefits: entry.fields.benefits || [],
-      salary: entry.fields.salary,
+      title: (entry.fields.title as string) || '',
+      slug: (entry.fields.slug as string) || '',
+      department: (entry.fields.department as string) || '',
+      location: (entry.fields.location as string) || '',
+      type:
+        (entry.fields.type as
+          | 'full-time'
+          | 'part-time'
+          | 'contract'
+          | 'internship') || 'full-time',
+      experience: (entry.fields.experience as string) || '',
+      description: (entry.fields.description as string) || '',
+      requirements: (entry.fields.requirements as string[]) || [],
+      benefits: (entry.fields.benefits as string[]) || [],
+      salary: entry.fields.salary as
+        | {
+            min: number;
+            max: number;
+            currency: string;
+          }
+        | undefined,
       publishedAt: entry.sys.createdAt,
-      applicationDeadline: entry.fields.applicationDeadline,
+      applicationDeadline: (entry.fields.applicationDeadline as string) || '',
     };
   } catch (error) {
     console.error('Error fetching job posting:', error);

@@ -6,8 +6,8 @@ import { usePathname, useSearchParams } from 'next/navigation';
 
 declare global {
   interface Window {
-    gtag: (...args: any[]) => void;
-    dataLayer: any[];
+    gtag: (...args: (string | number | boolean | object)[]) => void;
+    dataLayer: (string | number | boolean | object)[];
   }
 }
 

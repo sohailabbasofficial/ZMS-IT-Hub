@@ -21,7 +21,14 @@ export async function GET(request: NextRequest) {
     const role = searchParams.get('role') || '';
     const status = searchParams.get('status') || '';
 
-    const where: any = {};
+    const where: {
+      OR?: Array<{
+        name?: { contains: string; mode: 'insensitive' };
+        email?: { contains: string; mode: 'insensitive' };
+      }>;
+      role?: string;
+      isActive?: boolean;
+    } = {};
 
     if (search) {
       where.OR = [

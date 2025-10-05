@@ -23,7 +23,6 @@ export async function GET() {
       publishedProjects,
       totalBlogPosts,
       publishedBlogPosts,
-      totalTeamMembers,
       activeTeamMembers,
     ] = await Promise.all([
       prisma.contactInquiry.count(),
@@ -38,7 +37,6 @@ export async function GET() {
       prisma.project.count({ where: { status: 'published' } }),
       prisma.blogPost.count(),
       prisma.blogPost.count({ where: { status: 'published' } }),
-      prisma.teamMember.count(),
       prisma.teamMember.count({ where: { isActive: true } }),
     ]);
 

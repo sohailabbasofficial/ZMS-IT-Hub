@@ -3,7 +3,7 @@ import { siteConfig } from '@/lib/config';
 
 interface StructuredDataProps {
   type: 'Organization' | 'WebSite' | 'BreadcrumbList' | 'Article' | 'Service';
-  data: any;
+  data: Record<string, string | number | boolean | object>;
 }
 
 export function StructuredData({ type, data }: StructuredDataProps) {
@@ -58,7 +58,9 @@ export function StructuredData({ type, data }: StructuredDataProps) {
         return {
           '@context': 'https://schema.org',
           '@type': 'BreadcrumbList',
-          itemListElement: data.map((item: any, index: number) => ({
+          itemListElement: (
+            data as unknown as Array<{ name: string; url: string }>
+          ).map((item, index: number) => ({
             '@type': 'ListItem',
             position: index + 1,
             name: item.name,
@@ -67,15 +69,24 @@ export function StructuredData({ type, data }: StructuredDataProps) {
         };
 
       case 'Article':
+        const articleData = data as unknown as {
+          title: string;
+          description: string;
+          image: string;
+          author?: { name: string };
+          publishedAt: string;
+          updatedAt: string;
+          url: string;
+        };
         return {
           '@context': 'https://schema.org',
           '@type': 'Article',
-          headline: data.title,
-          description: data.description,
-          image: data.image,
+          headline: articleData.title,
+          description: articleData.description,
+          image: articleData.image,
           author: {
             '@type': 'Person',
-            name: data.author?.name || siteConfig.name,
+            name: articleData.author?.name || siteConfig.name,
           },
           publisher: {
             '@type': 'Organization',
@@ -85,26 +96,31 @@ export function StructuredData({ type, data }: StructuredDataProps) {
               url: `${siteConfig.url}${siteConfig.logo}`,
             },
           },
-          datePublished: data.publishedAt,
-          dateModified: data.updatedAt,
+          datePublished: articleData.publishedAt,
+          dateModified: articleData.updatedAt,
           mainEntityOfPage: {
             '@type': 'WebPage',
-            '@id': data.url,
+            '@id': articleData.url,
           },
         };
 
       case 'Service':
+        const serviceData = data as unknown as {
+          title: string;
+          description: string;
+          category: string;
+        };
         return {
           '@context': 'https://schema.org',
           '@type': 'Service',
-          name: data.title,
-          description: data.description,
+          name: serviceData.title,
+          description: serviceData.description,
           provider: {
             '@type': 'Organization',
             name: siteConfig.name,
             url: siteConfig.url,
           },
-          serviceType: data.category,
+          serviceType: serviceData.category,
           areaServed: 'Worldwide',
           hasOfferCatalog: {
             '@type': 'OfferCatalog',
@@ -114,8 +130,8 @@ export function StructuredData({ type, data }: StructuredDataProps) {
                 '@type': 'Offer',
                 itemOffered: {
                   '@type': 'Service',
-                  name: data.title,
-                  description: data.description,
+                  name: serviceData.title,
+                  description: serviceData.description,
                 },
               },
             ],
@@ -165,7 +181,7 @@ export function generateMetadata({
       title: pageTitle,
       description,
       url: pageUrl,
-      type: type as any,
+      type: type as 'website' | 'article',
       images: [
         {
           url: pageImage,
