@@ -64,32 +64,32 @@ export default async function TeamPage() {
                 key={founder.id}
                 className="transform rounded-2xl bg-white p-8 shadow-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
               >
-              <div className="text-center">
-                <div className="mb-8">
-                  <Image
+                <div className="text-center">
+                  <div className="mb-8">
+                    <Image
                       src={founder.imageUrl || '/images/expert.png'}
                       alt={`${founder.name}, Co-Founder of ZMS IT Hub`}
-                    width={200}
-                    height={200}
-                    className="mx-auto rounded-full shadow-lg"
-                  />
-                </div>
-                <h3 className="mb-2 text-2xl font-bold text-secondary">
+                      width={200}
+                      height={200}
+                      className="mx-auto rounded-full shadow-lg"
+                    />
+                  </div>
+                  <h3 className="mb-2 text-2xl font-bold text-secondary">
                     {founder.name}
-                </h3>
-                <p className="mb-4 font-semibold text-primary">
+                  </h3>
+                  <p className="mb-4 font-semibold text-primary">
                     {founder.position}
-                </p>
+                  </p>
                   {founder.bio && (
-                <p className="mb-6 leading-relaxed text-gray-600">
+                    <p className="mb-6 leading-relaxed text-gray-600">
                       {founder.bio}
                     </p>
                   )}
-                <CoFounderSocials
+                  <CoFounderSocials
                     linkedinUrl={founder.linkedinUrl || ''}
                     email={founder.email || ''}
-                  size="lg"
-                  className="justify-center"
+                    size="lg"
+                    className="justify-center"
                   />
                 </div>
               </div>
@@ -157,43 +157,43 @@ export default async function TeamPage() {
                 key={member.id}
                 className="transform rounded-xl bg-white p-6 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
-              <div className="text-center">
-                <Image
+                <div className="text-center">
+                  <Image
                     src={member.imageUrl || '/images/expert.png'}
                     alt={`${member.name}, ${member.position} of ZMS IT Hub`}
-                  width={120}
-                  height={120}
-                  className="mx-auto mb-4 rounded-full shadow-md"
-                />
-                <h3 className="mb-1 text-xl font-bold text-secondary">
+                    width={120}
+                    height={120}
+                    className="mx-auto mb-4 rounded-full shadow-md"
+                  />
+                  <h3 className="mb-1 text-xl font-bold text-secondary">
                     {member.name}
-                </h3>
-                <p className="mb-3 font-semibold text-primary">
+                  </h3>
+                  <p className="mb-3 font-semibold text-primary">
                     {member.position}
-                </p>
+                  </p>
                   {member.bio && (
-                <p className="mb-4 text-sm leading-relaxed text-gray-600">
+                    <p className="mb-4 text-sm leading-relaxed text-gray-600">
                       {member.bio}
-                </p>
+                    </p>
                   )}
-                <div className="mb-3 flex justify-center gap-4">
+                  <div className="mb-3 flex justify-center gap-4">
                     {member.linkedinUrl && (
-                  <a
+                      <a
                         href={member.linkedinUrl}
-                    className="text-primary transition-colors hover:text-primary-dark"
-                  >
-                    <FiLinkedin size={18} />
-                  </a>
+                        className="text-primary transition-colors hover:text-primary-dark"
+                      >
+                        <FiLinkedin size={18} />
+                      </a>
                     )}
                     {member.email && (
-                  <a
+                      <a
                         href={`mailto:${member.email}`}
-                    className="text-primary transition-colors hover:text-primary-dark"
-                  >
-                    <FiMail size={18} />
-                  </a>
+                        className="text-primary transition-colors hover:text-primary-dark"
+                      >
+                        <FiMail size={18} />
+                      </a>
                     )}
-            </div>
+                  </div>
                 </div>
               </div>
             ))}
