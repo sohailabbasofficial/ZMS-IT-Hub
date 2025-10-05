@@ -22,6 +22,11 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
+    // Check if email exists and is not null/undefined
+    if (!session.user.email) {
+      return NextResponse.json({ error: 'User email not found' }, { status: 400 });
+    }
+
     const body = await request.json();
     const validatedData = changePasswordSchema.parse(body);
 
