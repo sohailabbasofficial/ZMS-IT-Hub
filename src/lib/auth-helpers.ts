@@ -30,4 +30,3 @@ export function isAdminRoute(pathname: string): boolean {
 export function shouldRedirectToLogin(pathname: string): boolean {
   return isAdminRoute(pathname);
 }
-

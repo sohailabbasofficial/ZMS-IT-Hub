@@ -22,14 +22,18 @@ export default function ImageUpload({
   const [preview, setPreview] = useState<string | null>(value || null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleFileSelect = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileSelect = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const file = event.target.files?.[0];
     if (!file) return;
 
     // Validate file type
     const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
     if (!allowedTypes.includes(file.type)) {
-      onError?.('Invalid file type. Only JPEG, PNG, and WebP images are allowed.');
+      onError?.(
+        'Invalid file type. Only JPEG, PNG, and WebP images are allowed.'
+      );
       return;
     }
 
@@ -105,27 +109,27 @@ export default function ImageUpload({
 
       {preview ? (
         <div className="relative">
-          <div className="relative w-full h-48 bg-gray-100 rounded-lg overflow-hidden">
+          <div className="relative h-48 w-full overflow-hidden rounded-lg bg-gray-100">
             <img
               src={preview}
               alt="Preview"
-              className="w-full h-full object-cover"
+              className="h-full w-full object-cover"
             />
             {!disabled && (
               <button
                 type="button"
                 onClick={handleRemoveImage}
-                className="absolute top-2 right-2 p-1 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors"
+                className="absolute right-2 top-2 rounded-full bg-red-500 p-1 text-white transition-colors hover:bg-red-600"
                 disabled={isUploading}
               >
-                <FiX className="w-4 h-4" />
+                <FiX className="h-4 w-4" />
               </button>
             )}
           </div>
           {isUploading && (
-            <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-              <div className="bg-white rounded-lg p-4 flex items-center space-x-2">
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
+            <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
+              <div className="flex items-center space-x-2 rounded-lg bg-white p-4">
+                <div className="h-4 w-4 animate-spin rounded-full border-b-2 border-blue-600"></div>
                 <span className="text-sm text-gray-700">Uploading...</span>
               </div>
             </div>
@@ -135,25 +139,25 @@ export default function ImageUpload({
         <div
           onClick={handleClick}
           className={`
-            w-full h-48 border-2 border-dashed border-gray-300 rounded-lg
-            flex flex-col items-center justify-center space-y-2
-            cursor-pointer hover:border-gray-400 transition-colors
-            ${disabled || isUploading ? 'opacity-50 cursor-not-allowed' : ''}
+            flex h-48 w-full cursor-pointer flex-col items-center
+            justify-center space-y-2 rounded-lg border-2 border-dashed
+            border-gray-300 transition-colors hover:border-gray-400
+            ${disabled || isUploading ? 'cursor-not-allowed opacity-50' : ''}
           `}
         >
           {isUploading ? (
             <div className="flex flex-col items-center space-y-2">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+              <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-blue-600"></div>
               <span className="text-sm text-gray-600">Uploading...</span>
             </div>
           ) : (
             <>
-              <FiImage className="w-8 h-8 text-gray-400" />
+              <FiImage className="h-8 w-8 text-gray-400" />
               <div className="text-center">
                 <p className="text-sm text-gray-600">
                   Click to upload an image
                 </p>
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="mt-1 text-xs text-gray-500">
                   PNG, JPG, WebP up to 5MB
                 </p>
               </div>

@@ -79,7 +79,7 @@ export default function TeamMemberForm({
       } else {
         const error = await response.json();
         console.error('API Error:', error);
-        
+
         if (error.details) {
           alert(`Validation Error: ${error.details}`);
         } else {
@@ -201,7 +201,7 @@ export default function TeamMemberForm({
 
             {/* Image Upload */}
             <div className="sm:col-span-2">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="mb-2 block text-sm font-medium text-gray-700">
                 Profile Image
               </label>
               <ImageUpload

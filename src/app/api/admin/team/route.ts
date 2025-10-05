@@ -65,7 +65,7 @@ export async function POST(request: NextRequest) {
 
     const body = await request.json();
     console.log('Team member creation request:', body);
-    
+
     const validatedData = teamMemberSchema.parse(body);
     console.log('Validated data:', validatedData);
 
@@ -80,9 +80,9 @@ export async function POST(request: NextRequest) {
 
     if (error instanceof Error && error.name === 'ZodError') {
       return NextResponse.json(
-        { 
+        {
           error: 'Validation error',
-          details: error.message 
+          details: error.message,
         },
         { status: 400 }
       );

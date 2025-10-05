@@ -3,6 +3,7 @@
 This directory contains uploaded images for team members.
 
 ## Directory Structure
+
 ```
 public/uploads/team/
 ├── .gitkeep
@@ -12,6 +13,7 @@ public/uploads/team/
 ## Features
 
 ### Image Upload API (`/api/admin/upload/image`)
+
 - **Method**: POST
 - **Authentication**: Admin required
 - **File Types**: JPEG, JPG, PNG, WebP
@@ -19,6 +21,7 @@ public/uploads/team/
 - **Response**: Returns public URL for uploaded image
 
 ### Image Upload Component (`ImageUpload.tsx`)
+
 - Drag & drop interface
 - File validation (type and size)
 - Image preview
@@ -27,6 +30,7 @@ public/uploads/team/
 - Remove image functionality
 
 ### Team Member Form Integration
+
 - Replaces URL input with file upload
 - Real-time image preview
 - Automatic URL generation
@@ -41,7 +45,9 @@ public/uploads/team/
 5. **Display**: Uploaded images appear on the public team page (`/team`)
 
 ## File Naming Convention
+
 Uploaded files are automatically renamed with format:
+
 ```
 team-{timestamp}-{randomString}.{extension}
 ```
@@ -49,6 +55,7 @@ team-{timestamp}-{randomString}.{extension}
 Example: `team-1699123456789-abc123def456.jpg`
 
 ## Security Features
+
 - File type validation
 - File size limits
 - Admin authentication required
@@ -56,6 +63,7 @@ Example: `team-1699123456789-abc123def456.jpg`
 - Automatic filename generation to prevent conflicts
 
 ## Error Handling
+
 - Invalid file type messages
 - File size limit warnings
 - Upload failure notifications

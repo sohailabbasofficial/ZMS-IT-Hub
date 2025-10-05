@@ -466,4 +466,3 @@ export default function EditBlogPost({ params }: { params: { id: string } }) {
     </div>
   );
 }
-

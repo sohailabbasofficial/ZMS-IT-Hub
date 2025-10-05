@@ -14,10 +14,10 @@ async function createSecureAdmin() {
 
     if (existingAdmin) {
       console.log('⚠️ Admin user already exists. Updating password...');
-      
+
       // Update existing admin with new secure password
       const hashedPassword = await bcrypt.hash('SecureAdmin2025!', 12);
-      
+
       await prisma.user.update({
         where: { email: 'admin@zmsithub.com' },
         data: {
@@ -27,12 +27,12 @@ async function createSecureAdmin() {
           name: 'System Administrator',
         },
       });
-      
+
       console.log('✅ Admin password updated successfully');
     } else {
       // Create new admin user
       const hashedPassword = await bcrypt.hash('SecureAdmin2025!', 12);
-      
+
       const admin = await prisma.user.create({
         data: {
           email: 'admin@zmsithub.com',
@@ -42,7 +42,7 @@ async function createSecureAdmin() {
           isActive: true,
         },
       });
-      
+
       console.log('✅ Admin user created successfully');
     }
 
@@ -51,7 +51,6 @@ async function createSecureAdmin() {
     console.log('Password: SecureAdmin2025!');
     console.log('');
     console.log('⚠️ IMPORTANT: Change this password after first login!');
-    
   } catch (error) {
     console.error('❌ Error creating admin user:', error);
   } finally {

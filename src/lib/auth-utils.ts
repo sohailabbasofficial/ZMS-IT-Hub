@@ -25,4 +25,3 @@ export async function requireAuth(request?: NextRequest) {
 
   return session;
 }
-

@@ -5,14 +5,18 @@ import { prisma } from '@/lib/prisma';
 import bcrypt from 'bcryptjs';
 import { z } from 'zod';
 
-const changePasswordSchema = z.object({
-  currentPassword: z.string().min(1, 'Current password is required'),
-  newPassword: z.string().min(8, 'New password must be at least 8 characters'),
-  confirmPassword: z.string().min(1, 'Password confirmation is required'),
-}).refine((data) => data.newPassword === data.confirmPassword, {
-  message: "Passwords don't match",
-  path: ["confirmPassword"],
-});
+const changePasswordSchema = z
+  .object({
+    currentPassword: z.string().min(1, 'Current password is required'),
+    newPassword: z
+      .string()
+      .min(8, 'New password must be at least 8 characters'),
+    confirmPassword: z.string().min(1, 'Password confirmation is required'),
+  })
+  .refine((data) => data.newPassword === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ['confirmPassword'],
+  });
 
 export async function POST(request: NextRequest) {
   try {
@@ -24,7 +28,10 @@ export async function POST(request: NextRequest) {
 
     // Check if email exists and is not null/undefined
     if (!session.user.email) {
-      return NextResponse.json({ error: 'User email not found' }, { status: 400 });
+      return NextResponse.json(
+        { error: 'User email not found' },
+        { status: 400 }
+      );
     }
 
     const body = await request.json();
@@ -63,19 +70,18 @@ export async function POST(request: NextRequest) {
 
     console.log('🔐 Password changed successfully for', session.user.email);
 
-    return NextResponse.json({ 
-      success: true, 
-      message: 'Password changed successfully' 
+    return NextResponse.json({
+      success: true,
+      message: 'Password changed successfully',
     });
-
   } catch (error) {
     console.error('Error changing password:', error);
 
     if (error instanceof z.ZodError) {
       return NextResponse.json(
-        { 
+        {
           error: 'Validation error',
-          details: error.issues 
+          details: error.issues,
         },
         { status: 400 }
       );
