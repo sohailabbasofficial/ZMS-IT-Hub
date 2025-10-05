@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { FiLinkedin, FiMail } from 'react-icons/fi';
 import CoFounderSocials from '@/components/ui/CoFounderSocials';
+import { prisma } from '@/lib/prisma';
 
 export const metadata: Metadata = {
   title: 'Our Team | Web Development Team Karachi | ZMS IT Hub',
@@ -17,7 +18,20 @@ export const metadata: Metadata = {
   ],
 };
 
-export default function TeamPage() {
+export default async function TeamPage() {
+  // Fetch team members from database
+  const teamMembers = await prisma.teamMember.findMany({
+    where: { isActive: true },
+    orderBy: [
+      { isFounder: 'desc' },
+      { displayOrder: 'asc' },
+      { createdAt: 'asc' },
+    ],
+  });
+
+  // Separate founders from other team members
+  const founders = teamMembers.filter((member) => member.isFounder);
+  const otherMembers = teamMembers.filter((member) => !member.isFounder);
   return (
     <>
       {/* Hero Section */}
@@ -45,77 +59,41 @@ export default function TeamPage() {
             </p>
           </div>
           <div className="mx-auto grid max-w-5xl gap-12 md:grid-cols-2">
-            <div className="transform rounded-2xl bg-white p-8 shadow-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
-              <div className="text-center">
-                <div className="mb-8">
-                  <Image
-                    src="/images/sohail-abbas.jpg"
-                    alt="Sohail Abbas, Co-Founder & CEO of ZMS IT Hub"
-                    width={200}
-                    height={200}
-                    className="mx-auto rounded-full shadow-lg"
+            {founders.map((founder) => (
+              <div
+                key={founder.id}
+                className="transform rounded-2xl bg-white p-8 shadow-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+              >
+                <div className="text-center">
+                  <div className="mb-8">
+                    <Image
+                      src={founder.imageUrl || '/images/expert.png'}
+                      alt={`${founder.name}, Co-Founder of ZMS IT Hub`}
+                      width={200}
+                      height={200}
+                      className="mx-auto rounded-full shadow-lg"
+                    />
+                  </div>
+                  <h3 className="mb-2 text-2xl font-bold text-secondary">
+                    {founder.name}
+                  </h3>
+                  <p className="mb-4 font-semibold text-primary">
+                    {founder.position}
+                  </p>
+                  {founder.bio && (
+                    <p className="mb-6 leading-relaxed text-gray-600">
+                      {founder.bio}
+                    </p>
+                  )}
+                  <CoFounderSocials
+                    linkedinUrl={founder.linkedinUrl || ''}
+                    email={founder.email || ''}
+                    size="lg"
+                    className="justify-center"
                   />
                 </div>
-                <h3 className="mb-2 text-2xl font-bold text-secondary">
-                  Sohail Abbas
-                </h3>
-                <p className="mb-4 font-semibold text-primary">
-                  Founder Of ZMS IT Hub & CEO & Project Manager
-                </p>
-                <p className="mb-6 leading-relaxed text-gray-600">
-                  As Founder & CEO of ZMS IT Hub, he leads with vision and
-                  strategy while managing projects to ensure successful
-                  outcomes. With strong leadership and project management
-                  expertise, he drives innovation and growth for clients and
-                  teams alike.
-                </p>
-                <p className="mb-6 font-medium italic text-primary">
-                  "Leadership is about inspiring others to achieve greatness."
-                </p>
-                <CoFounderSocials
-                  linkedinUrl="https://linkedin.com/in/sohailabbas18"
-                  email="sohailabbas.ceo@gmail.com"
-                  size="lg"
-                  className="justify-center"
-                />
               </div>
-            </div>
-            <div className="transform rounded-2xl bg-white p-8 shadow-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
-              <div className="text-center">
-                <div className="mb-8">
-                  <Image
-                    src="/images/muhammad-safdar.png"
-                    alt="Muhammad Safdar, Co-Founder of ZMS IT Hub"
-                    width={200}
-                    height={200}
-                    className="mx-auto rounded-full shadow-lg"
-                  />
-                </div>
-                <h3 className="mb-2 text-2xl font-bold text-secondary">
-                  Muhammad Safdar
-                </h3>
-                <p className="mb-4 font-semibold text-primary">
-                  Business Consultant & Co-Founder of ZMS IT Hub & Principal of
-                  Rise College kot Momin & Problem-Solving Expert & Mentor{' '}
-                </p>
-                <p className="mb-6 leading-relaxed text-gray-600">
-                  With 6+ years of freelancing and consulting experience, he
-                  combines business expertise with academic leadership as
-                  Principal of Rise College. A fast learner and mentor, known
-                  for exceptional problem-solving skills that drive growth and
-                  innovation.
-                </p>
-                <p className="mb-6 font-medium italic text-primary">
-                  "Technology should solve real-world problems."
-                </p>
-                <CoFounderSocials
-                  linkedinUrl="https://linkedin.com/in/muhammadsafdar"
-                  email="muhammad.safdar@zmsit.com"
-                  size="lg"
-                  className="justify-center"
-                />
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -174,250 +152,51 @@ export default function TeamPage() {
             </p>
           </div>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {/* Muhammad Kamran - Sales Manager */}
-            <div className="transform rounded-xl bg-white p-6 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-              <div className="text-center">
-                <Image
-                  src="/images/muhammad-kamran.png"
-                  alt="Muhammad Kamran, Sales Manager of ZMS IT Hub"
-                  width={120}
-                  height={120}
-                  className="mx-auto mb-4 rounded-full shadow-md"
-                />
-                <h3 className="mb-1 text-xl font-bold text-secondary">
-                  Muhammad Kamran
-                </h3>
-                <p className="mb-3 font-semibold text-primary">Sales Manager</p>
-                <p className="mb-4 text-sm leading-relaxed text-gray-600">
-                  Experienced sales professional with a proven track record in
-                  building client relationships and driving business growth
-                  through strategic partnerships.
-                </p>
-                <div className="mb-3 flex justify-center gap-4">
-                  <a
-                    href="https://linkedin.com/in/placeholder"
-                    className="text-primary transition-colors hover:text-primary-dark"
-                  >
-                    <FiLinkedin size={18} />
-                  </a>
-                  <a
-                    href="mailto:team@zmsit.com"
-                    className="text-primary transition-colors hover:text-primary-dark"
-                  >
-                    <FiMail size={18} />
-                  </a>
+            {otherMembers.map((member) => (
+              <div
+                key={member.id}
+                className="transform rounded-xl bg-white p-6 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+              >
+                <div className="text-center">
+                  <Image
+                    src={member.imageUrl || '/images/expert.png'}
+                    alt={`${member.name}, ${member.position} of ZMS IT Hub`}
+                    width={120}
+                    height={120}
+                    className="mx-auto mb-4 rounded-full shadow-md"
+                  />
+                  <h3 className="mb-1 text-xl font-bold text-secondary">
+                    {member.name}
+                  </h3>
+                  <p className="mb-3 font-semibold text-primary">
+                    {member.position}
+                  </p>
+                  {member.bio && (
+                    <p className="mb-4 text-sm leading-relaxed text-gray-600">
+                      {member.bio}
+                    </p>
+                  )}
+                  <div className="mb-3 flex justify-center gap-4">
+                    {member.linkedinUrl && (
+                      <a
+                        href={member.linkedinUrl}
+                        className="text-primary transition-colors hover:text-primary-dark"
+                      >
+                        <FiLinkedin size={18} />
+                      </a>
+                    )}
+                    {member.email && (
+                      <a
+                        href={`mailto:${member.email}`}
+                        className="text-primary transition-colors hover:text-primary-dark"
+                      >
+                        <FiMail size={18} />
+                      </a>
+                    )}
+                  </div>
                 </div>
-                <p className="text-xs italic text-gray-500">
-                  "Building relationships is the key to success."
-                </p>
               </div>
-            </div>
-
-            {/* Ahmad Khan - Google Ads Expert */}
-            <div className="transform rounded-xl bg-white p-6 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-              <div className="text-center">
-                <Image
-                  src="/images/ahmad-khan.png"
-                  alt="Ahmad Khan, Google Ads Expert of ZMS IT Hub"
-                  width={120}
-                  height={120}
-                  className="mx-auto mb-4 rounded-full shadow-md"
-                />
-                <h3 className="mb-1 text-xl font-bold text-secondary">
-                  Ahmad Khan
-                </h3>
-                <p className="mb-3 font-semibold text-primary">
-                  Google Ads Expert
-                </p>
-                <p className="mb-4 text-sm leading-relaxed text-gray-600">
-                  Digital marketing specialist with expertise in Google Ads
-                  campaigns, PPC optimization, and conversion rate improvement
-                  strategies.
-                </p>
-                <div className="mb-3 flex justify-center gap-4">
-                  <a
-                    href="https://linkedin.com/in/placeholder"
-                    className="text-primary transition-colors hover:text-primary-dark"
-                  >
-                    <FiLinkedin size={18} />
-                  </a>
-                  <a
-                    href="mailto:team@zmsit.com"
-                    className="text-primary transition-colors hover:text-primary-dark"
-                  >
-                    <FiMail size={18} />
-                  </a>
-                </div>
-                <p className="text-xs italic text-gray-500">
-                  "Data-driven marketing delivers results."
-                </p>
-              </div>
-            </div>
-
-            {/* Isma Sana - Google Ads Expert */}
-            <div className="transform rounded-xl bg-white p-6 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-              <div className="text-center">
-                <Image
-                  src="/images/isma-sana.png"
-                  alt="Isma Sana, Google Ads Expert of ZMS IT Hub"
-                  width={120}
-                  height={120}
-                  className="mx-auto mb-4 rounded-full shadow-md"
-                />
-                <h3 className="mb-1 text-xl font-bold text-secondary">
-                  Isma Sana
-                </h3>
-                <p className="mb-3 font-semibold text-primary">
-                  Google Ads Expert
-                </p>
-                <p className="mb-4 text-sm leading-relaxed text-gray-600">
-                  Certified Google Ads professional focused on creating
-                  high-performing campaigns that deliver measurable ROI and
-                  business growth.
-                </p>
-                <div className="mb-3 flex justify-center gap-4">
-                  <a
-                    href="https://linkedin.com/in/placeholder"
-                    className="text-primary transition-colors hover:text-primary-dark"
-                  >
-                    <FiLinkedin size={18} />
-                  </a>
-                  <a
-                    href="mailto:team@zmsit.com"
-                    className="text-primary transition-colors hover:text-primary-dark"
-                  >
-                    <FiMail size={18} />
-                  </a>
-                </div>
-                <p className="text-xs italic text-gray-500">
-                  "Every click counts towards success."
-                </p>
-              </div>
-            </div>
-
-            {/* Frazana Ameer - Google Ads Expert */}
-            <div className="transform rounded-xl bg-white p-6 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-              <div className="text-center">
-                <Image
-                  src="/images/frazna-ameer.png"
-                  alt="Frazana Ameer, Google Ads Expert of ZMS IT Hub"
-                  width={120}
-                  height={120}
-                  className="mx-auto mb-4 rounded-full shadow-md"
-                />
-                <h3 className="mb-1 text-xl font-bold text-secondary">
-                  Frazana Ameer
-                </h3>
-                <p className="mb-3 font-semibold text-primary">
-                  Google Ads Expert
-                </p>
-                <p className="mb-4 text-sm leading-relaxed text-gray-600">
-                  Digital advertising expert with deep knowledge of Google Ads
-                  platform, audience targeting, and campaign optimization
-                  techniques.
-                </p>
-                <div className="mb-3 flex justify-center gap-4">
-                  <a
-                    href="https://linkedin.com/in/placeholder"
-                    className="text-primary transition-colors hover:text-primary-dark"
-                  >
-                    <FiLinkedin size={18} />
-                  </a>
-                  <a
-                    href="mailto:team@zmsit.com"
-                    className="text-primary transition-colors hover:text-primary-dark"
-                  >
-                    <FiMail size={18} />
-                  </a>
-                </div>
-                <p className="text-xs italic text-gray-500">
-                  "Precision targeting drives conversions."
-                </p>
-              </div>
-            </div>
-
-            {/* Nazmeen - Customer Support */}
-            <div className="transform rounded-xl bg-white p-6 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-              <div className="text-center">
-                <Image
-                  src="/images/Nazmeen.png"
-                  alt="Nazmeen, Customer Support of ZMS IT Hub"
-                  width={120}
-                  height={120}
-                  className="mx-auto mb-4 rounded-full shadow-md"
-                />
-                <h3 className="mb-1 text-xl font-bold text-secondary">
-                  Nazmeen
-                </h3>
-                <p className="mb-3 font-semibold text-primary">
-                  Customer Support
-                </p>
-                <p className="mb-4 text-sm leading-relaxed text-gray-600">
-                  Dedicated customer support specialist committed to providing
-                  exceptional service and ensuring client satisfaction
-                  throughout their journey.
-                </p>
-                <div className="mb-3 flex justify-center gap-4">
-                  <a
-                    href="https://linkedin.com/in/placeholder"
-                    className="text-primary transition-colors hover:text-primary-dark"
-                  >
-                    <FiLinkedin size={18} />
-                  </a>
-                  <a
-                    href="mailto:team@zmsit.com"
-                    className="text-primary transition-colors hover:text-primary-dark"
-                  >
-                    <FiMail size={18} />
-                  </a>
-                </div>
-                <p className="text-xs italic text-gray-500">
-                  "Customer satisfaction is our priority."
-                </p>
-              </div>
-            </div>
-
-            {/* Samavia Arshad - Google Ads Expert & Customer Support */}
-            <div className="transform rounded-xl bg-white p-6 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-              <div className="text-center">
-                <Image
-                  src="/images/samavia-arshad.jpg"
-                  alt="Samavia Arshad, Google Ads Expert & Customer Support of ZMS IT Hub"
-                  width={120}
-                  height={120}
-                  className="mx-auto mb-4 rounded-full shadow-md"
-                />
-                <h3 className="mb-1 text-xl font-bold text-secondary">
-                  Samavia Arshad
-                </h3>
-                <p className="mb-3 font-semibold text-primary">
-                  Google Ads Expert & Customer Support
-                </p>
-                <p className="mb-4 text-sm leading-relaxed text-gray-600">
-                  Versatile professional combining digital marketing expertise
-                  with exceptional customer service skills. Specializes in
-                  Google Ads campaigns while ensuring outstanding client
-                  support.
-                </p>
-                <div className="mb-3 flex justify-center gap-4">
-                  <a
-                    href="https://linkedin.com/in/placeholder"
-                    className="text-primary transition-colors hover:text-primary-dark"
-                  >
-                    <FiLinkedin size={18} />
-                  </a>
-                  <a
-                    href="mailto:team@zmsit.com"
-                    className="text-primary transition-colors hover:text-primary-dark"
-                  >
-                    <FiMail size={18} />
-                  </a>
-                </div>
-                <p className="text-xs italic text-gray-500">
-                  "Excellence in both marketing and service."
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>

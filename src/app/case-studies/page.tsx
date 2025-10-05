@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Container from '@/components/ui/Container';
 import CaseStudyCard from '@/components/ui/CaseStudyCard';
+import { prisma } from '@/lib/prisma';
 
 export const metadata: Metadata = {
   title: 'Case Studies | Successful Software Development Projects | ZMS IT Hub',
@@ -18,43 +19,15 @@ export const metadata: Metadata = {
   ],
 };
 
-// Case studies data - Update these with your actual project details
-const caseStudies = [
-  {
-    slug: 'school-management-system',
-    title: 'School Management System',
-    description:
-      'Digital platform to manage students, teachers, fees, and attendance with centralized data management and online fee collection.',
-    image: '/images/school.png',
-    imageAlt: 'School Management System Dashboard',
-  },
-  {
-    slug: 'college-management-system',
-    title: 'College Management System',
-    description:
-      'Complete solution for courses, exams, and student management with automated exam results and streamlined processes.',
-    image: '/images/college.png',
-    imageAlt: 'College Management System Interface',
-  },
-  {
-    slug: 'pharmacy-management-system',
-    title: 'Pharmacy Management System',
-    description:
-      'Digital stock & sales management for pharmacies with real-time inventory tracking and automated alerts.',
-    image: '/images/pharmacy.png',
-    imageAlt: 'Pharmacy Management System Dashboard',
-  },
-  {
-    slug: 'hospital-management-system',
-    title: 'Hospital Management System',
-    description:
-      'End-to-end solution for patient records, doctors, and billing with centralized EHR and appointment system.',
-    image: '/images/hospital.png',
-    imageAlt: 'Hospital Management System Interface',
-  },
-];
-
-export default function CaseStudiesPage() {
+export default async function CaseStudiesPage() {
+  // Fetch published projects from database
+  const projects = await prisma.project.findMany({
+    where: {
+      status: 'published',
+      featured: true, // Only show featured projects as case studies
+    },
+    orderBy: { createdAt: 'desc' },
+  });
   return (
     <>
       {/* Hero Section */}
@@ -75,14 +48,17 @@ export default function CaseStudiesPage() {
       <section className="section-padding">
         <Container>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-2">
-            {caseStudies.map((caseStudy) => (
+            {projects.map((project) => (
               <CaseStudyCard
-                key={caseStudy.slug}
-                slug={caseStudy.slug}
-                title={caseStudy.title}
-                description={caseStudy.description}
-                image={caseStudy.image}
-                imageAlt={caseStudy.imageAlt}
+                key={project.slug}
+                slug={project.slug}
+                title={project.title}
+                description={
+                  project.description ||
+                  'Explore this project to learn more about our development process and results.'
+                }
+                image={project.featuredImage || '/images/expert.png'}
+                imageAlt={`${project.title} - Project Overview`}
               />
             ))}
           </div>

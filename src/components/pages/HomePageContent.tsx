@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 import {
   FiArrowRight,
   FiCheck,
@@ -33,7 +34,61 @@ import {
 } from '@/components/animations/AnimatedElements';
 import { TestimonialCarousel } from '@/components/animations/TestimonialCarousel';
 
+interface Service {
+  id: string;
+  title: string;
+  slug: string;
+  description: string;
+  icon?: string;
+}
+
+interface Stats {
+  projects: number;
+  teamMembers: number;
+  yearsExperience: number;
+}
+
 export default function HomePageContent() {
+  const [services, setServices] = useState<Service[]>([]);
+  const [stats, setStats] = useState<Stats>({
+    projects: 3,
+    teamMembers: 10,
+    yearsExperience: 3,
+  });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [servicesRes, statsRes] = await Promise.all([
+          fetch('/api/public/services'),
+          fetch('/api/public/stats'),
+        ]);
+
+        if (servicesRes.ok) {
+          const servicesData = await servicesRes.json();
+          setServices(servicesData);
+        }
+
+        if (statsRes.ok) {
+          const statsData = await statsRes.json();
+          setStats(statsData);
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        // Fallback to static data if API fails
+        setServices(siteConfig.services.slice(0, 8));
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // Use dynamic services if available, otherwise fallback to static
+  const displayServices =
+    services.length > 0 ? services : siteConfig.services.slice(0, 8);
   return (
     <>
       {/* Hero Section */}
@@ -69,7 +124,7 @@ export default function HomePageContent() {
               <StaggerContainer className="flex items-center space-x-8 pt-8">
                 <StaggerItem className="text-center">
                   <div className="text-4xl font-bold text-white drop-shadow-lg">
-                    <AnimatedCounter end={3} />
+                    <AnimatedCounter end={stats.projects} />
                   </div>
                   <div className="text-sm font-medium text-gray-300">
                     Successful Projects
@@ -77,7 +132,7 @@ export default function HomePageContent() {
                 </StaggerItem>
                 <StaggerItem className="text-center">
                   <div className="text-4xl font-bold text-white drop-shadow-lg">
-                    <AnimatedCounter end={10} />
+                    <AnimatedCounter end={stats.teamMembers} />
                   </div>
                   <div className="text-sm font-medium text-gray-300">
                     Team Members
@@ -85,7 +140,10 @@ export default function HomePageContent() {
                 </StaggerItem>
                 <StaggerItem className="text-center">
                   <div className="text-4xl font-bold text-white drop-shadow-lg">
-                    <AnimatedCounter end={3} suffix=" Years" />
+                    <AnimatedCounter
+                      end={stats.yearsExperience}
+                      suffix=" Years"
+                    />
                   </div>
                   <div className="text-sm font-medium text-gray-300">
                     Experience
@@ -135,7 +193,7 @@ export default function HomePageContent() {
           </FadeInUp>
 
           <StaggerContainer className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {siteConfig.services.slice(0, 8).map((service, index) => (
+            {displayServices.map((service, index) => (
               <StaggerItem key={service.slug}>
                 <TiltOnHover className="card group">
                   <div className="mb-4 flex items-center">

@@ -128,7 +128,7 @@ export default function WhatsAppContactButton() {
   return (
     <>
       {/* WhatsApp Button */}
-      <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50">
+      <div className="fixed bottom-4 right-4 z-50 sm:bottom-6 sm:right-6">
         <button
           ref={buttonRef}
           onClick={() => setIsOpen(!isOpen)}
@@ -138,14 +138,14 @@ export default function WhatsAppContactButton() {
               setIsOpen(!isOpen);
             }
           }}
-          className="group relative flex h-10 w-10 sm:h-14 sm:w-14 animate-pulse items-center justify-center rounded-2xl bg-green-500 text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-green-600 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-green-300"
+          className="group relative flex h-10 w-10 animate-pulse items-center justify-center rounded-2xl bg-green-500 text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-green-600 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-green-300 sm:h-14 sm:w-14"
           aria-label="Open WhatsApp contact options"
           aria-expanded={isOpen}
           aria-haspopup="menu"
         >
           {/* WhatsApp Icon */}
           <svg
-            className="h-5 w-5 sm:h-8 sm:w-8 transition-transform duration-300 group-hover:scale-110"
+            className="h-5 w-5 transition-transform duration-300 group-hover:scale-110 sm:h-8 sm:w-8"
             fill="currentColor"
             viewBox="0 0 24 24"
             aria-hidden="true"

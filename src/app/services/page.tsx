@@ -14,7 +14,7 @@ import {
 } from 'react-icons/fi';
 import Container from '@/components/ui/Container';
 import Button from '@/components/ui/Button';
-import { siteConfig } from '@/lib/config';
+import { prisma } from '@/lib/prisma';
 
 export const metadata: Metadata = {
   title:
@@ -32,7 +32,13 @@ export const metadata: Metadata = {
   ],
 };
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  // Fetch services from database
+  const services = await prisma.service.findMany({
+    where: { isActive: true },
+    orderBy: { displayOrder: 'asc' },
+  });
+
   const serviceIcons = [
     FiCode,
     FiSmartphone,
@@ -103,8 +109,8 @@ export default function ServicesPage() {
           </div>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {siteConfig.services.map((service, index) => {
-              const IconComponent = serviceIcons[index];
+            {services.map((service, index) => {
+              const IconComponent = serviceIcons[index % serviceIcons.length];
               return (
                 <div
                   key={service.slug}

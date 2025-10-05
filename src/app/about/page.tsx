@@ -11,6 +11,7 @@ import {
 } from 'react-icons/fi';
 import Container from '@/components/ui/Container';
 import Button from '@/components/ui/Button';
+import { prisma } from '@/lib/prisma';
 
 export const metadata: Metadata = {
   title: 'About ZMS IT Hub | Leading Software Development Company',
@@ -25,36 +26,41 @@ export const metadata: Metadata = {
   ],
 };
 
-export default function AboutPage() {
-  const teamMembers = [
-    {
-      name: 'Zain Malik',
-      position: 'Founder & CEO',
-      bio: 'Visionary leader with 8+ years in software development and business strategy.',
-      avatar: '/images/team/zain-malik.jpg',
-      skills: ['Leadership', 'Strategy', 'Full-Stack Development'],
+export default async function AboutPage() {
+  // Fetch team members from database
+  const teamMembers = await prisma.teamMember.findMany({
+    where: { isActive: true },
+    orderBy: [{ isFounder: 'desc' }, { displayOrder: 'asc' }],
+    take: 4, // Show top 4 team members
+  });
+
+  // Get statistics from database
+  const [teamCount, projectCount] = await Promise.all([
+    prisma.teamMember.count({ where: { isActive: true } }),
+    prisma.project.count({ where: { status: 'published' } }),
+  ]);
+
+  // Get company settings
+  const companySettings = await prisma.setting.findMany({
+    where: {
+      key: {
+        in: ['general_years_experience', 'general_founded_year'],
+      },
     },
-    {
-      name: 'Sarah Ahmed',
-      position: 'CTO',
-      bio: 'Technical architect specializing in scalable systems and cloud infrastructure.',
-      avatar: '/images/team/sarah-ahmed.jpg',
-      skills: ['Cloud Architecture', 'DevOps', 'System Design'],
-    },
-    {
-      name: 'Hassan Khan',
-      position: 'Lead Developer',
-      bio: 'Full-stack developer with expertise in modern web technologies and mobile apps.',
-      avatar: '/images/team/hassan-khan.jpg',
-      skills: ['React', 'Node.js', 'Mobile Development'],
-    },
-    {
-      name: 'Ayesha Ali',
-      position: 'UI/UX Designer',
-      bio: 'Creative designer focused on user-centered design and exceptional user experiences.',
-      avatar: '/images/team/ayesha-ali.jpg',
-      skills: ['UI/UX Design', 'Prototyping', 'User Research'],
-    },
+  });
+
+  const yearsExperience =
+    companySettings.find((s) => s.key === 'general_years_experience')?.value ||
+    '3';
+  const foundedYear =
+    companySettings.find((s) => s.key === 'general_founded_year')?.value ||
+    '2025';
+
+  const stats = [
+    { number: projectCount.toString(), label: 'Successful Projects' },
+    { number: teamCount.toString(), label: 'Team Members' },
+    { number: yearsExperience, label: 'Years Experience' },
+    { number: foundedYear, label: 'Founded' },
   ];
 
   const values = [
@@ -82,13 +88,6 @@ export default function AboutPage() {
       description:
         'We embrace innovation and stay ahead of technology trends to deliver cutting-edge solutions.',
     },
-  ];
-
-  const stats = [
-    { number: '3', label: 'Successful Projects' },
-    { number: '10', label: 'Team Members' },
-    { number: '3', label: 'Years Experience' },
-    { number: '2025', label: 'Founded' },
   ];
 
   return (
@@ -272,10 +271,10 @@ export default function AboutPage() {
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
             {teamMembers.map((member, index) => (
-              <div key={index} className="group text-center">
+              <div key={member.id} className="group text-center">
                 <div className="relative mb-6">
                   <Image
-                    src={member.avatar}
+                    src={member.imageUrl || '/images/expert.png'}
                     alt={member.name}
                     width={200}
                     height={200}
@@ -289,17 +288,20 @@ export default function AboutPage() {
                   {member.position}
                 </p>
                 <p className="mb-4 text-sm leading-relaxed text-gray-600">
-                  {member.bio}
+                  {member.bio ||
+                    'Experienced professional dedicated to delivering exceptional results.'}
                 </p>
                 <div className="flex flex-wrap justify-center gap-2">
-                  {member.skills.map((skill, skillIndex) => (
-                    <span
-                      key={skillIndex}
-                      className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700"
-                    >
-                      {skill}
+                  {member.linkedinUrl && (
+                    <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">
+                      LinkedIn
                     </span>
-                  ))}
+                  )}
+                  {member.email && (
+                    <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">
+                      Contact
+                    </span>
+                  )}
                 </div>
               </div>
             ))}

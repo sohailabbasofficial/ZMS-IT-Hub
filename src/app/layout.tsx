@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter, Poppins } from 'next/font/google';
 import './globals.css';
-import Layout from '@/components/layout/Layout';
+import ConditionalLayout from '@/components/layout/ConditionalLayout';
 import { siteConfig } from '@/lib/config';
 
 const inter = Inter({
@@ -81,7 +81,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
       <body className="font-sans antialiased">
-        <Layout>{children}</Layout>
+        <ConditionalLayout>{children}</ConditionalLayout>
       </body>
     </html>
   );
