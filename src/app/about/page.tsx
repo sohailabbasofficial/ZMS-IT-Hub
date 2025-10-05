@@ -270,7 +270,7 @@ export default async function AboutPage() {
           </div>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {teamMembers.map((member, index) => (
+            {teamMembers.map((member) => (
               <div key={member.id} className="group text-center">
                 <div className="relative mb-6">
                   <Image

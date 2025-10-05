@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import Image from 'next/image';
 import { FiArrowRight, FiCalendar, FiClock, FiUser } from 'react-icons/fi';
 import Container from '@/components/ui/Container';
 import Button from '@/components/ui/Button';

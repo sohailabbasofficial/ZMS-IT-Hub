@@ -1,12 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { FiSave, FiEye, FiArrowLeft } from 'react-icons/fi';
 
 export default function NewBlogPost() {
-  const { data: session } = useSession();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [previewMode, setPreviewMode] = useState(false);

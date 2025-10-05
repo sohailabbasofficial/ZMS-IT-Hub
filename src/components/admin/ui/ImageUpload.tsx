@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import { FiUpload, FiX, FiImage } from 'react-icons/fi';
+import { FiX, FiImage } from 'react-icons/fi';
 
 interface ImageUploadProps {
   value?: string;

@@ -1,7 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useSession } from 'next-auth/react';
+import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   FiPlus,
@@ -9,7 +8,6 @@ import {
   FiTrash2,
   FiEye,
   FiSearch,
-  FiFilter,
   FiRefreshCw,
 } from 'react-icons/fi';
 
@@ -31,7 +29,6 @@ interface BlogPost {
 }
 
 export default function BlogManagement() {
-  const { data: session } = useSession();
   const router = useRouter();
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
@@ -41,11 +38,7 @@ export default function BlogManagement() {
   const [totalPages, setTotalPages] = useState(1);
   const [totalPosts, setTotalPosts] = useState(0);
 
-  useEffect(() => {
-    fetchBlogPosts();
-  }, [currentPage, searchTerm, statusFilter]);
-
-  const fetchBlogPosts = async () => {
+  const fetchBlogPosts = useCallback(async () => {
     try {
       setLoading(true);
       const params = new URLSearchParams({
@@ -69,7 +62,11 @@ export default function BlogManagement() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [currentPage, searchTerm, statusFilter]);
+
+  useEffect(() => {
+    fetchBlogPosts();
+  }, [fetchBlogPosts]);
 
   const handleDelete = async (id: string) => {
     if (!confirm('Are you sure you want to delete this blog post?')) {

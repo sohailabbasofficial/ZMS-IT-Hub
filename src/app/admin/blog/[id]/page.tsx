@@ -1,7 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useSession } from 'next-auth/react';
+import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { FiSave, FiEye, FiArrowLeft, FiTrash2 } from 'react-icons/fi';
 
@@ -28,7 +27,6 @@ interface BlogPost {
 }
 
 export default function EditBlogPost({ params }: { params: { id: string } }) {
-  const { data: session } = useSession();
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -47,11 +45,7 @@ export default function EditBlogPost({ params }: { params: { id: string } }) {
     tags: '',
   });
 
-  useEffect(() => {
-    fetchBlogPost();
-  }, [params.id]);
-
-  const fetchBlogPost = async () => {
+  const fetchBlogPost = useCallback(async () => {
     try {
       const response = await fetch(`/api/admin/blog/${params.id}`);
       if (response.ok) {
@@ -79,7 +73,11 @@ export default function EditBlogPost({ params }: { params: { id: string } }) {
     } finally {
       setLoading(false);
     }
-  };
+  }, [params.id, router]);
+
+  useEffect(() => {
+    fetchBlogPost();
+  }, [fetchBlogPost]);
 
   const handleInputChange = (
     e: React.ChangeEvent<

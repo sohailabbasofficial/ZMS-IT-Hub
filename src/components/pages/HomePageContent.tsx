@@ -77,7 +77,12 @@ export default function HomePageContent() {
       } catch (error) {
         console.error('Error fetching data:', error);
         // Fallback to static data if API fails
-        setServices(siteConfig.services.slice(0, 8));
+        setServices(
+          siteConfig.services.slice(0, 8).map((service, index) => ({
+            ...service,
+            id: `static-${index}`,
+          }))
+        );
       } finally {
         setLoading(false);
       }

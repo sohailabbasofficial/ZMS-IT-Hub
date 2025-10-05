@@ -171,12 +171,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 {blogPost.author.image ? (
                   <img
                     src={blogPost.author.image}
-                    alt={blogPost.author.name}
+                    alt={blogPost.author.name || 'Author'}
                     className="h-12 w-12 rounded-full object-cover"
                   />
                 ) : (
                   <span className="text-lg font-medium text-gray-600">
-                    {blogPost.author.name.charAt(0)}
+                    {(blogPost.author.name || 'A').charAt(0)}
                   </span>
                 )}
               </div>
